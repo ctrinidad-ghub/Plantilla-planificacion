@@ -1,7 +1,7 @@
 \documentclass[11pt]{charter}
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
-\titulo{Título del proyecto} 
+\titulo{Medición y aceptación de parámetros en transformadores de corriente alterna} 
 
 % Nombre del posgrado, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \degreename
 \posgrado{Carrera de Especialización en Sistemas Embebidos} 
@@ -11,7 +11,7 @@
 %\posgrado{Maestría en Internet de las cosas}
 
 % Tu nombre, se puede usar el cualquier lugar del documento con el comando \authorname
-\autor{Nombre del Autor} 
+\autor{Cristian Trinidad} 
 
 % El nombre del director y co-director, se puede usar el cualquier lugar del documento con el comando \supname y \cosupname y \pertesupname y \pertecosupname
 \director{Nombre del Director}
@@ -21,8 +21,8 @@
 \pertenenciaCoDirector{}
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
-\cliente{Nombre del cliente}
-\empresaCliente{Empresa del cliente}
+\cliente{Esp. Lic. Leopoldo A. Zimperz}
+\empresaCliente{Iris Tecnologia S.R.L.}
 
 % Nombre y pertenencia de los jurados, se pueden usar el cualquier lugar del documento con el comando \jurunoname, \jurdosname y \jurtresname y \perteunoname, \pertedosname y \pertetresname.
 \juradoUno{Nombre y Apellido (1)}
@@ -85,7 +85,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en el prototipo preliminar de un\textcolor{red}{... completar con una descripción de una o dos líneas}, y tendrá un presupuesto preliminar estimado de 600 hs de trabajo y \textcolor{red}{\$XXX}, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en el prototipo preliminar de un dispositivo capaz de medir y registrar parámetros de transformadores de corriente alterna empleados en la fabricación de dispositivos electromédicos, y tendrá un presupuesto preliminar estimado de 600 hs de trabajo y \textcolor{red}{\$XXX}, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -108,22 +108,14 @@ Se adjunta a esta acta la planificación inicial.
 \section{Descripción técnica-conceptual del Proyecto a realizar}
 \label{sec:descripcion}
 
-\begin{consigna}{red}
-El objetivo es que el lector en una o dos páginas entienda de qué se trata el proyecto y cuáles son sus desafíos, su motivación y su importancia.
-Se debe destacar claramente cuál es el valor que agrega el proyecto a realizar. ``El presente proyecto se destaca especialmente por incorporar tal cosa... Esto lo diferencia de otros sistemas similares en que ...''
 
-Puede ser útil incluir en esta sección la respuesta a alguna de estas preguntas:
+La empresa Iris tecnología S.R.L. fabrica equipos electromédicos cumpliendo con los requisitos de “Buenas Prácticas de Fabricación” exigidos por la Administración Nacional de Medicamentos, Alimentos y Tecnología Médica (A.N.M.A.T.). Adicionalmente incorporó un sistema de gestión de calidad para fabricación de dispositivos médicos, basado en la norma ISO13485:2016. En la actualidad se está trabajando en la incorporación de tecnologías para agilizar tareas y controles que deben realizarse acorde a dicho sistema de calidad. 
 
-\begin{itemize}
-\item ¿Cómo se vincula este proyecto con la misión de la organización?
-\item ¿Cómo se inserta este proyecto en el modelo de negocio de la organización?
-\item ¿Ayuda a la explicación si se incluye un lienzo Canvas del Modelo de Negocio?
-\item ¿En qué estado del ciclo de vida está el producto que se desea reemplazar o mejorar?
-\item ¿Cuales son las necesidades que debe satisfacer?
-\item ¿Por dónde pasa la innovación?
-\end{itemize}
+Entre las tareas y controles antes mencionados se encuentra el ensayo y calificación de  transformadores para su posterior utilización en las líneas de producción. El objetivo de este proyecto es proveer un dispositivo capaz de automatizar este procedimiento, el cual, actualmente se realiza en forma manual. Esta labor además de insumir una gran cantidad de tiempo y ser muy repetitiva, presenta un gran riesgo de error humano, pudiendo además, comprometer la seguridad del operario y la fiabilidad de los datos obtenidos.
 
-La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en bloques del sistema }y una frase como la siguiente: ``En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa que...''. Luego recién más abajo de haber puesto esta frase se pone la figura. La regla es que las figuras nunca pueden ir antes de ser mencionadas en el texto, porque sino el lector no entiende por qué de pronto aparece una figura.
+La idea es desarrollar un prototipo capaz de medir y registrar los parámetros de transformadores de tensión alterna empleados en la fabricación de dispositivos electromédicos, a fin ser aceptados o rechazados para su posterior uso. Los parámetros a medir incluyen las tensiones y corrientes de los bobinados primario y secundario.
+
+En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema.
 
 \vspace{25px}
 
@@ -136,27 +128,25 @@ La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en
 
 \vspace{25px}
 
-El tamaño de la tipografía en la figura debe ser adecuado para que NO pase lo que ocurre acá, donde el lector debe esforzarse para poder leer el texto. Los colores usados en el diagrama deben ser adecuados, tal que ayuden a comprender mejor el diagrama.
-\end{consigna}
+
+El dispositivo propuesto deberá indicar al operador si el transformador es aceptado o rechazado en base a umbrales previamente configurados por medio de una comunicación WiFi. Además de mostrar el resultado del ensayo localmente, este y las mediciones realizadas deberán ser enviados a un servidor web a través de la comunicación WiFi y adicionalmente se debe imprimir una etiqueta que permita la trazabilidad del componente.
+
+
+A continuación se presenta un resumen de las tareas propuestas para el dispositivo a desarrollar:
+\begin{itemize}
+\item Mediciones de tensión y corriente a los transformadores bajo ensayo.
+\item Configuración de umbrales de aceptación para los parámetros medidos.
+\item Emitir confirmación de aceptación o rechazo del transformador.
+\item Visualización en display LCD de umbrales seteados y mediciones.
+\item Envío de las mediciones a servidor web, vía red WiFi.
+\item Impresión de etiquetas con número de partida y valores medidos. 
+\end{itemize}
 
 
 \section{Identificación y análisis de los interesados}
 \label{sec:interesados}
 
 \begin{consigna}{red} 
-Nota: (borrar esto y todas las consignas en color rojo antes de entregar este documento).
- 
-Es inusual que una misma persona esté en más de un rol, incluso en proyectos chicos.
- 
-Si se considera que una persona cumple dos o más roles, entonces sólo dejarla en el rol más importante. Por ejemplo:
-
-\begin{itemize}
-\item Si una persona es Cliente pero también colabora u orienta, dejarla solo como Cliente.
-\item Si una persona es el Responsable, no debe ser colocado también como Miembro del equipo.
-\end{itemize}
-
-Pero en cambio sí es usual que el Cliente y el Auspiciante sean el mismo, por ejemplo.
-
 \begin{table}[ht]
 %\caption{Identificación de los interesados}
 %\label{tab:interesados}
@@ -164,34 +154,13 @@ Pero en cambio sí es usual que el Cliente y el Auspiciante sean el mismo, por e
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
-Auspiciante   &                   &              	&        	\\ \hline
-Cliente       & \clientename      &\empclientename	&        	\\ \hline
-Impulsor      &                   &              	&        	\\ \hline
+Cliente       & \clientename      &\empclientename	& Socio     \\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaboradores &                   &              	&        	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director	Trabajo final \\ \hline
-Equipo        & miembro1 \newline 
-				miembro2          &              	&        	\\ \hline
-Opositores    &                   &              	&        	\\ \hline
-Usuario final &                   &              	&        	\\ \hline
+Equipo        & \authorname       & FIUBA        	& Alumno	\\ \hline
+Usuario final & Operadores        &\empclientename	& Operador 	\\ \hline
 \end{tabularx}
 \end{table}
-
-El Director suele ser uno de los Orientadores.
-
-No dejar celdas vacías; si no hay nada que poner en una celda colocar un signo ``-''.
-
-No dejar filas vacías; si no hay nada que poner en una fila entonces eliminarla.
-
-Sería deseable listar a continuación de la tabla las principales características de cada interesado.
- 
-Por ejemplo:
-\begin{itemize}
-\item Auspiciante: es riguroso y exigente con la rendición de gastos. Tener mucho cuidado con esto.
-\item Equipo: Juan Perez, suele pedir licencia porque tiene un familiar con una enfermedad. Planificar considerando esto.
-\item Orientador: María Gómez, nos va a poder ayudar mucho con la gestión de impuestos.
-\end{itemize}
-
 \end{consigna}
 
 
@@ -199,128 +168,219 @@ Por ejemplo:
 \section{1. Propósito del proyecto}
 \label{sec:proposito}
 
-\begin{consigna}{red}
-¿Por qué se hace el proyecto? ¿Qué se quiere lograr? 
+El propósito de este proyecto es disminuir el riesgo de error humano y aumentar la fiabilidad de los datos obtenidos al evaluar los transformadores. Así también como aumentar la seguridad de los operadores expuestos a altas tensiones al simplificar el procedimiento de caracterización e incorporar métodos de protección en el prototipo a diseñar.
 
-Se recomienda que sea solo un párrafo que empiece diciendo ``El propósito de este proyecto es...''.
-\end{consigna}
 
 \section{2. Alcance del proyecto}
 \label{sec:alcance}
 
-\begin{consigna}{red}
-¿Qué se incluye y que no se incluye en este proyecto?
+El presente proyecto, tiene como alcance:
+\begin{itemize}
+\item Análisis, investigación y elección del hardware.
+\item Investigar sobre un modelo de impresora a adquirir, cuyo protocolo esté disponible y permita llevar a cabo el proyecto.
+\item Diseño e implementación del firmware del sistema en lenguaje C.
+\item Desarrollo de un prototipo funcional sobre un PCB tipo universal.
+\item Elaboración de un manual de usuario con la información mínima requerida para la operación del dispositivo y con las recomendaciones para evitar descargas de alta tensión. 
+\end{itemize}
 
-Se refiere al trabajo a hacer para entregar el producto o resultado especificado. 
-
-Explicitar todo lo quede comprendido dentro del alcance del proyecto.
-
-Explicitar además todo lo que no quede incluido (``El presente proyecto no incluye...'')
-
-\end{consigna}
-
+Queda excluido del alcance de este proyecto:
+\begin{itemize}
+\item El desarrollo de circuitos de medición de tensión y/o corriente alterna de precisión. Se acepta la precisión obtenida de módulos comerciales como el ZMPT101B.
+\item El desarrollo de fuentes de tensión alterna para alimentar los transformadores en ensayo. El cliente deberá proporcionar al dispositivo los 230Vac estabilizados necesarios para alimentar el bobinado primario y la tensión alterna adecuada para alimentar el bobinado secundario.
+\item El desarrollo de una interfaz web desde la cual interactuar por WiFi con el módulo.
+\item El desarrollo del servidor web o API de colección de datos del en el servidor/PC del cliente. Ésta será provista por el cliente.
+\item El desarrollo de un prototipo de fabricación escalable que cumpla con todas las certificaciones necesarias.
+\item El desarrollo de un PCB, más allá del prototipo en placa universal.
+\item El diseño del gabinete para la instalación del sistema electrónico. El dispositivo se proveerá en algún tipo de gabinete, pero de ninguna manera se pretende un desarrollo detallado de éste.
+\item El diseño de circuitos de protección del operario contra descargas eléctricas de alta tensión. En este sentido se asume que el operario que utilizará el dispositivo es idóneo en el tema y que el cliente posee en sus instalaciones las medidas de seguridad pertinentes para el trabajo con altas tensiones como disyuntores y puestas a tierras acorde con la normativa vigente de Higiene y Seguridad en el Trabajo.
+\end{itemize}
 
 \section{3. Supuestos del proyecto}
 \label{sec:supuestos}
 
-\begin{consigna}{red}
-``Para el desarrollo del presente proyecto se supone que: ...''
+
+Para el desarrollo del presente proyecto se supone que:
 
 \begin{itemize}
-\item Supuesto 1
-\item Supuesto 2...
+\item La precisión necesaria para las mediciones de tensión y/o corrientes pueden ser obtenida con el uso de módulos comerciales como el ZMPT101B con modificaciones mínimas.
+\item Los costos de los materiales son cubiertos por el cliente.
+\item Los materiales necesarios para el armado del prototipo pueden ser comprados en el país, aun con las restricciones de importación impuestas por el COVID-19.
+\item El cliente proveerá los transformadores a medir.
+\item El cliente proveerá la impresora a utilizar.
+\item La impresora a utilizar posee interfaz RS-232.
+\item El protocolo de la impresora a utilizar debe estar disponible para su implementación. No está contemplado dentro del proyecto hacer ingeniería inversa sobre la impresora a utilizar.
+\item Si bien se incluyen algunas protecciones para el manejo de tensiones de 220 Vac, como se dijo anteriormente, se asume que el operario es idóneo y conoce los riesgos en la operación del dispositivo y que el cliente cumple las reglamentaciones de Higiene y Seguridad en el Trabajo.
+\item El cliente es responsable de proporcionar, en caso de ser necesario y de una manera simple de entender e implementar, los requerimientos asociados al cumplimiento de su sistema de gestión de calidad para la fabricación de dispositivos médicos, basado en la norma ISO13485:2016 y cualquier otra normativa de cumplimiento necesario.
 \end{itemize}
 
-Por ejemplo, se podrían incluir supuestos respecto a disponibilidad de tiempo y recursos humanos y materiales, sobre la factibilidad técnica de distintos aspectos del proyecto, sobre otras cuestiones que sean necesarias para el éxito del proyecto como condiciones macroeconómicas o reglamentarias.
-\end{consigna}
+
 
 \section{4. Requerimientos}
 \label{sec:requerimientos}
 
-\begin{consigna}{red}
-Los requerimientos deben numerarse y de ser posible agruparlos por afinidad:
 
 \begin{enumerate}
-\item Grupo de requerimientos asociados con...
+\item Requerimientos de hardware
 	\begin{enumerate}
-	\item Requerimiento 1
-	\item Requerimiento 2
-	\item Requerimiento 3 (prioridad menor)
+	\item El dispositivo debe ser diseñado basado en el módulo ESP32.
+	\item El dispositivo debe ser capaz de medir tensiones y corrientes alternas de manera aislada del transformador bajo ensayo.
+	\item El dispositivo debe ser capaz de conmutar las tensiones primarias y secundarias.
+	\item El dispositivo debe tener un display LCD alfanumérico 20x4 caracteres.
+	\item El dispositivo debe tener una interfaz Wifi.
+	\item El dispositivo debe tener una interfaz RS232 capaz de manejar impresoras.
+	\item El dispositivo debe alimentarse desde la red eléctrica Argentina 220Vac/50hz, debiendo proveerse todas las alimentaciones a los diferentes módulos de hardware.
+	\item El dispositivo debe poseer un switch para indicar que la tapa de seguridad ha sido removida.
+	\item El dispositivo debe poseer 3 pulsadores nombrados Configurar, Testear y Cancelar.
+	\item El dispositivo debe poseer un buzzer.
 	\end{enumerate}
-\item Grupo de requerimientos asociados con...
+\item Requerimientos relativos a los valores a medir
 	\begin{enumerate}
-	\item Requerimiento 1
-	\item Requerimiento 2 (prioridad menor)
+	\item Bobinado primario
+		\begin{enumerate}
+		\item Rango tensión: 100 – 240Vac
+		\item Rango corriente: 0 – 800 mAac
+		\end{enumerate}
+	\item Bobinado secundario
+		\begin{enumerate}
+		\item Rango tensión: 0 – 30 Vac
+		\item Rango corriente: 0 – 1500 mAac
+		\end{enumerate}
+	\item Precisión en la medición de tensión: mejor al 1.5\% (puede variar en base a lo que se pueda conseguir en el mercado)
+	\item Precisión en la medición de corriente: mejor al 4\% (puede variar en base a lo que se pueda conseguir en el mercado)
+	\end{enumerate}
+\item Requerimientos funcionales
+	\begin{enumerate}
+	\item El dispositivo debe permitir que se configuren los umbrales mínimos y máximos para los parámetros medidos. 
+	\item Los valores a configurar deben ser adquiridos solo por WiFi, no se admite configuración local por teclado.
+	\item El dispositivo debe generar una confirmación de aceptación o rechazo del transformador en ensayo basado en los umbrales mínimos y máximos preseteados.
+	\item El dispositivo, luego de cada ensayo, independiente del resultado, debe imprimir etiquetas con la siguiente información:
+		\begin{enumerate}
+		\item Número de partida del transformador ensayado
+		\item Condición de aceptado o rechazado
+		\item Valores medidos de tensiones y corrientes
+		\end{enumerate}
+	\item El dispositivo debe seguir de forma automática la siguiente secuencia de testeo basico:
+		\begin{itemize}
+		\item Pulsar Testear
+		\item Verificar si el dispositivo fue configurado, sino pedir parámetros de configuración
+		\item Energizar el bobinado primario con 230Vac estabilizados  (provistos externamente por el cliente)
+		\item Medir:
+			\begin{itemize}
+			\item Tensión en bobinado primario
+			\item Corriente que circula por el bobinado primario
+			\item Tensión en bobinado secundario
+			\end{itemize}
+		\item Desenergizar el bobinado primario
+		\item Energizar el bobinado secundario con la tensión adecuada (provista externamente por el cliente)
+		\item Medir:
+			\begin{itemize}
+			\item Tensión en bobinado primario
+			\item Tensión en bobinado secundario
+			\item Corriente que circula por el bobinado secundario
+			\end{itemize}
+		\item Desenergizar el bobinado secundario
+		\item Comparar los valores medidos con los umbrales configurados previamente y determinar si el transformador es aceptado o rechazado
+		\end{itemize}
+	\end{enumerate}	
+\item Requerimientos de comunicación (interfaz WiFi)
+	\begin{enumerate}
+	\item Solicitar parámetros de configuración: el dispositivo debe generar un comando GET de http a un servidor web (provisto por el cliente) para obtener los umbrales de aceptación y el número de partida del transformador a ensayar.
+	\item El dispositivo de ser capaz de procesar la respuesta del comando GET que estará en formato JSON.
+	\item Enviar resultados del ensayo: el dispositivo debe generar un comando POST de http a un servidor (provisto por el cliente) con la información del transformador ensayado en formato JSON.
+	\end{enumerate}
+\item Requerimientos de interfaz de usuario
+	\begin{enumerate}
+	\item Sobre la funcionalidad de los pulsadores
+		\begin{enumerate}
+		\item Configurar: al pulsar este pulsador el dispositivo debe generar el comando GET para solicitar al servidor web los parámetros de configuración del dispositivo a través de WiFi.
+		\item Testear: al pulsar este pulsador el dispositivo debe iniciar la secuencia de testeo.
+		\item Cancelar: al pulsar este pulsador la secuencia de testeo en curso debe quedar abortada.
+		\end{enumerate}
+	\item Sobre la funcionalidad del display LCD
+		\begin{enumerate}
+		\item El dispositivo debe mostrar los umbrales presetedos y los valores de las mediciones actuales.
+		\item Los valores de los umbrales configurados en el dispositivo deberán permanecer en el display  durante el ensayo.
+		\item El dispositivo debe mostrar los valores medidos del transformador ensayado luego de cada medición.
+		\item Luego de finalizado el ensayo se debe mostrar un mensaje que indica que la información del ensayo se ha enviado al servidor web y mantenerse el dispositivo bloqueado hasta que se haya recibido la respuesta del servidor.
+		\end{enumerate}
+	\item Sobre el buzzer
+		\begin{enumerate}
+		\item El dispositivo debe emitir un solo sonido de 0,5 segundos de duración para confirmar la aceptación del transformador.
+		\item El dispositivo debe emitir un sonido de repetición de 5 ciclos de 0,5 segundos de duración con pausas de 0,5 segundos para confirmar el rechazo del transformador.
+		\end{enumerate}		
 	\end{enumerate}
 \end{enumerate}
 
-Leyendo los requerimientos se debe poder interpretar cómo será el proyecto y su funcionalidad.
 
-De ser posible indicar cómo se obtuvieron cada uno de los requerimientos 
 
-Indicar claramente cuál es la prioridad entre los distintos requerimientos. 
 
-No olvidarse de que los requerimientos incluyen a las regulaciones y normas vigentes!!!
-
-Y al escribirlos seguir las siguientes reglas:
-\begin{itemize}
-\item Ser breve y conciso (nadie lee cosas largas). 
-\item Ser específico: no dejar lugar a confusiones.
-\item Expresar los requerimientos en términos que sean cuantificables y medibles.
-\end{itemize}
-
-\end{consigna}
 
 \section{5. Entregables principales del proyecto}
 \label{sec:entregables}
 
-\begin{consigna}{red}
-Cosas como: 
-\begin{itemize}
-\item Manual de uso
-\item Diagrama esquemático
-\item Código fuente
-\item Diagrama de instalación
-\item Informe final
 
+\begin{itemize}
+\item Lista de componentes
+\item Diagrama esquemático de la placa universal
+\item Diagrama de cableado del dispositivo
+\item Código fuente en C
+\item Prototipo del equipo funcionando
+\item Manual de uso
+\item Informe final
 \end{itemize}
 
-\end{consigna}
+
 
 \section{6. Desglose del trabajo en tareas}
 \label{sec:wbs}
 
-\begin{consigna}{red}
-Se recomienda mostrar el WBS mediante una lista indexada:
 
 \begin{enumerate}
-\item Grupo de tareas 1
+\item Análisis y definición de requerimientos (40 hs)
 	\begin{enumerate}
-	\item Tarea 1 (tantas hs)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas hs)
+	\item Definición del alcance y captura de requerimientos con el cliente (20 hs).
+	\item Análisis de factibilidad: investigación sobre características de sensores de corriente alterna disponibles en el mercado (10 hs).
+	\item Planificación del proyecto, escritura de documentos previos (10 hs).
 	\end{enumerate}
-\item Grupo de tareas 2
+\item Desarrollo de hardware (170 hs)
 	\begin{enumerate}
-	\item Tarea 1 (tantas hs)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas hs)
+	\item Calculo, simulación y selección de los componentes de hardware (45 hs).
+	\item Diseño del diagrama esquemático (25 hs).
+	\item Gestión de compra de componentes con el cliente (15 hs).
+	\item Armado de prototipo de hardware preliminar en protoboard (20 hs).
+	\item Armado del circuito final en placa universal (40 hs).
+	\item Ensamblado del prototipo (15 hs).
+	\item Pruebas preliminares de hardware (10 hs).
 	\end{enumerate}
-	\item Grupo de tareas 3
+\item Desarrollo de software (240 hs)
 	\begin{enumerate}
-	\item Tarea 1 (tantas hs)
-	\item Tarea 2 (tantas hs)
-	\item Tarea 3 (tantas hs)
-	\item Tarea 4 (tantas hs)
-	\item Tarea 5 (tantas hs)
+	\item Preparación del entorno de trabajo, descarga e instalación de IDE y puesta punto del programador (5 hs).
+	\item Diseño de la arquitectura de software (20 hs).
+	\item Diseño de rutinas de medición (verdadero valor eficaz) (25 hs).
+	\item Diseño de rutinas funcionales (40 hs).
+	\item Diseño de rutinas de comunicación WiFi (40 hs).
+	\item Desarrollo de la interfaz de usuario (40 hs).
+	\item Investigación y desarrollo de librerías para el manejo de la impresora (30 hs).
+	\item Integración de las tareas en el RTOS (40 hs).
 	\end{enumerate}
+\item Verificación y validación del dispositivo (60 hs)
+	\begin{enumerate}
+	\item Desarrollo de pruebas unitarias (20 hs).
+	\item Desarrollo de pruebas de integración de los componentes de hardware/software (20hs).
+	\item Desarrollo de pruebas funcionales con diferentes transformadores (20 hs).
+	\end{enumerate}
+\item Cierre del proyecto (100 hs)
+	\begin{enumerate}
+	\item  Informes de avance del proyecto (10 hs).
+	\item  Confección del manual de usuario (20 hs).
+	\item  Memoria descriptiva final del proyecto (50 hs).
+	\item  Elaboración de presentación final (20 hs).
+	\end{enumerate}		
 \end{enumerate}
 
-Cantidad total de horas: (tantas hs)
+Cantidad total de horas: (610 hs)
 
-Se recomienda que no haya ninguna tarea que lleve más de 40 hs. 
 
-\end{consigna}
 
 \section{7. Diagrama de Activity On Node}
 \label{sec:AoN}
