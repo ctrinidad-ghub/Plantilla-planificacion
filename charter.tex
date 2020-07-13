@@ -109,28 +109,24 @@ Se adjunta a esta acta la planificación inicial.
 \label{sec:descripcion}
 
 
-La empresa Iris tecnología S.R.L. fabrica equipos electromédicos cumpliendo con los requisitos de “Buenas Prácticas de Fabricación” exigidos por la Administración Nacional de Medicamentos, Alimentos y Tecnología Médica (A.N.M.A.T.). Adicionalmente incorporó un sistema de gestión de calidad para fabricación de dispositivos médicos, basado en la norma ISO13485:2016. En la actualidad se está trabajando en la incorporación de tecnologías para agilizar tareas y controles que deben realizarse acorde a dicho sistema de calidad. 
+La empresa Iris tecnología S.R.L. fabrica equipos electromédicos cumpliendo con los requisitos de Buenas Prácticas de Fabricación exigidos por la Administración Nacional de Medicamentos, Alimentos y Tecnología Médica (A.N.M.A.T.). Adicionalmente, incorporó recientemente un sistema de gestión de calidad para fabricación de dispositivos médicos, basado en la norma ISO13485:2016. En la actualidad se está trabajando en la incorporación de tecnologías para agilizar tareas y controles que deben realizarse acorde a dicho sistema de calidad. 
 
-Entre las tareas y controles antes mencionados se encuentra el ensayo y calificación de  transformadores para su posterior utilización en las líneas de producción. El objetivo de este proyecto es proveer un dispositivo capaz de automatizar este procedimiento, el cual, actualmente se realiza en forma manual. Esta labor además de insumir una gran cantidad de tiempo y ser muy repetitiva, presenta un gran riesgo de error humano, pudiendo además, comprometer la seguridad del operario y la fiabilidad de los datos obtenidos.
+Entre las tareas y controles antes mencionados se encuentra el ensayo y calificación de  transformadores para su posterior utilización en las líneas de producción. El objetivo de este proyecto es proveer un dispositivo capaz de automatizar este procedimiento que, actualmente, se realiza en forma manual. Esta labor además de insumir una gran cantidad de tiempo y ser muy repetitiva, presenta un gran riesgo de error humano, y puede además, comprometer la seguridad del operario y la fiabilidad de los datos obtenidos.
 
 La idea es desarrollar un prototipo capaz de medir y registrar los parámetros de transformadores de tensión alterna empleados en la fabricación de dispositivos electromédicos, a fin ser aceptados o rechazados para su posterior uso. Los parámetros a medir incluyen las tensiones y corrientes de los bobinados primario y secundario.
 
-En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema.
+En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. En la figura se destaca el dispositivo a diseñar dentro del recuadro, adicionalmente se incluyen el transformador a ensayar y las fuentes de corriente alternas externas. Dentro del dispositivo a diseñar se observan los siguientes bloques principales:
 
-\vspace{25px}
-
-\begin{figure}[htpb]
-\centering 
-\includegraphics[width=.7\textwidth]{./Figuras/diagBloques.png}
-\caption{Diagrama en bloques del sistema}
-\label{fig:diagBloques}
-\end{figure}
-
-\vspace{25px}
-
+\begin{itemize}
+\item Módulo ESP32 con WiFi integrado.
+\item Bloques de acondicionamiento de señal y actuación para el bobinado primario y secundario.
+\item Interfaz de usuario: pulsadores, display y \textit{buzzer}.
+\item Interfaz para impresora RS232.
+\item \textit{Switch} de seguridad para indicar que la tapa de seguridad ha sido removida.
+\item Fuente de alimentación.
+\end{itemize}
 
 El dispositivo propuesto deberá indicar al operador si el transformador es aceptado o rechazado en base a umbrales previamente configurados por medio de una comunicación WiFi. Además de mostrar el resultado del ensayo localmente, este y las mediciones realizadas deberán ser enviados a un servidor web a través de la comunicación WiFi y adicionalmente se debe imprimir una etiqueta que permita la trazabilidad del componente.
-
 
 A continuación se presenta un resumen de las tareas propuestas para el dispositivo a desarrollar:
 \begin{itemize}
@@ -142,6 +138,12 @@ A continuación se presenta un resumen de las tareas propuestas para el disposit
 \item Impresión de etiquetas con número de partida y valores medidos. 
 \end{itemize}
 
+\begin{figure}[htpb]
+\centering 
+\includegraphics[width=.8\textwidth]{./Figuras/diagBloques.png}
+\caption{Diagrama en bloques del sistema}
+\label{fig:diagBloques}
+\end{figure}
 
 \section{Identificación y análisis de los interesados}
 \label{sec:interesados}
@@ -157,7 +159,6 @@ Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
 Cliente       & \clientename      &\empclientename	& Socio     \\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director	Trabajo final \\ \hline
-Equipo        & \authorname       & FIUBA        	& Alumno	\\ \hline
 Usuario final & Operadores        &\empclientename	& Operador 	\\ \hline
 \end{tabularx}
 \end{table}
@@ -168,13 +169,13 @@ Usuario final & Operadores        &\empclientename	& Operador 	\\ \hline
 \section{1. Propósito del proyecto}
 \label{sec:proposito}
 
-El propósito de este proyecto es disminuir el riesgo de error humano y aumentar la fiabilidad de los datos obtenidos al evaluar los transformadores. Así también como aumentar la seguridad de los operadores expuestos a altas tensiones al simplificar el procedimiento de caracterización e incorporar métodos de protección en el prototipo a diseñar.
+El propósito de este proyecto es disminuir el riesgo de error humano y aumentar la fiabilidad de los datos obtenidos al evaluar los transformadores. Asimismo, se requiere aumentar la seguridad de los operadores expuestos a altas tensiones con la simplificación del procedimiento de caracterización y la incorporación de métodos de protección en el prototipo a diseñar.
 
 
 \section{2. Alcance del proyecto}
 \label{sec:alcance}
 
-El presente proyecto, tiene como alcance:
+El presente proyecto tiene como alcance:
 \begin{itemize}
 \item Análisis, investigación y elección del hardware.
 \item Investigar sobre un modelo de impresora a adquirir, cuyo protocolo esté disponible y permita llevar a cabo el proyecto.
@@ -188,11 +189,11 @@ Queda excluido del alcance de este proyecto:
 \item El desarrollo de circuitos de medición de tensión y/o corriente alterna de precisión. Se acepta la precisión obtenida de módulos comerciales como el ZMPT101B.
 \item El desarrollo de fuentes de tensión alterna para alimentar los transformadores en ensayo. El cliente deberá proporcionar al dispositivo los 230Vac estabilizados necesarios para alimentar el bobinado primario y la tensión alterna adecuada para alimentar el bobinado secundario.
 \item El desarrollo de una interfaz web desde la cual interactuar por WiFi con el módulo.
-\item El desarrollo del servidor web o API de colección de datos del en el servidor/PC del cliente. Ésta será provista por el cliente.
+\item El desarrollo del servidor web o API de colección de datos del en el servidor/PC del cliente. Esta será provista por el cliente.
 \item El desarrollo de un prototipo de fabricación escalable que cumpla con todas las certificaciones necesarias.
 \item El desarrollo de un PCB, más allá del prototipo en placa universal.
-\item El diseño del gabinete para la instalación del sistema electrónico. El dispositivo se proveerá en algún tipo de gabinete, pero de ninguna manera se pretende un desarrollo detallado de éste.
-\item El diseño de circuitos de protección del operario contra descargas eléctricas de alta tensión. En este sentido se asume que el operario que utilizará el dispositivo es idóneo en el tema y que el cliente posee en sus instalaciones las medidas de seguridad pertinentes para el trabajo con altas tensiones como disyuntores y puestas a tierras acorde con la normativa vigente de Higiene y Seguridad en el Trabajo.
+\item El diseño del gabinete para la instalación del sistema electrónico.
+\item El diseño de circuitos de protección del operario contra descargas eléctricas de alta tensión. En este sentido, se asume que el operario que utilizará el dispositivo es idóneo en el tema. Asimismo, se asume que el cliente posee en sus instalaciones las medidas de seguridad pertinentes para el trabajo con altas tensiones, como disyuntores y puestas a tierras, acorde con la normativa vigente de Higiene y Seguridad en el Trabajo.
 \end{itemize}
 
 \section{3. Supuestos del proyecto}
@@ -203,7 +204,7 @@ Para el desarrollo del presente proyecto se supone que:
 
 \begin{itemize}
 \item La precisión necesaria para las mediciones de tensión y/o corrientes pueden ser obtenida con el uso de módulos comerciales como el ZMPT101B con modificaciones mínimas.
-\item Los costos de los materiales son cubiertos por el cliente.
+\item Los costos de los materiales serán cubiertos por el cliente.
 \item Los materiales necesarios para el armado del prototipo pueden ser comprados en el país, aun con las restricciones de importación impuestas por el COVID-19.
 \item El cliente proveerá los transformadores a medir.
 \item El cliente proveerá la impresora a utilizar.
@@ -222,22 +223,22 @@ Para el desarrollo del presente proyecto se supone que:
 \begin{enumerate}
 \item Requerimientos de hardware
 	\begin{enumerate}
-	\item El dispositivo debe ser diseñado basado en el módulo ESP32.
+	\item El dispositivo debe ser diseñado en base al módulo ESP32.
 	\item El dispositivo debe ser capaz de medir tensiones y corrientes alternas de manera aislada del transformador bajo ensayo.
 	\item El dispositivo debe ser capaz de conmutar las tensiones primarias y secundarias.
 	\item El dispositivo debe tener un display LCD alfanumérico 20x4 caracteres.
 	\item El dispositivo debe tener una interfaz Wifi.
 	\item El dispositivo debe tener una interfaz RS232 capaz de manejar impresoras.
 	\item El dispositivo debe alimentarse desde la red eléctrica Argentina 220Vac/50hz, debiendo proveerse todas las alimentaciones a los diferentes módulos de hardware.
-	\item El dispositivo debe poseer un switch para indicar que la tapa de seguridad ha sido removida.
+	\item El dispositivo debe poseer un \textit{switch} para indicar que la tapa de seguridad ha sido removida.
 	\item El dispositivo debe poseer 3 pulsadores nombrados Configurar, Testear y Cancelar.
-	\item El dispositivo debe poseer un buzzer.
+	\item El dispositivo debe poseer un \textit{buzzer}.
 	\end{enumerate}
 \item Requerimientos relativos a los valores a medir
 	\begin{enumerate}
 	\item Bobinado primario
 		\begin{enumerate}
-		\item Rango tensión: 100 – 240Vac
+		\item Rango tensión: 100 – 240 Vac
 		\item Rango corriente: 0 – 800 mAac
 		\end{enumerate}
 	\item Bobinado secundario
@@ -245,7 +246,7 @@ Para el desarrollo del presente proyecto se supone que:
 		\item Rango tensión: 0 – 30 Vac
 		\item Rango corriente: 0 – 1500 mAac
 		\end{enumerate}
-	\item Precisión en la medición de tensión: mejor al 1.5\% (puede variar en base a lo que se pueda conseguir en el mercado)
+	\item Precisión en la medición de tensión: mejor al 1,5\% (puede variar en base a lo que se pueda conseguir en el mercado)
 	\item Precisión en la medición de corriente: mejor al 4\% (puede variar en base a lo que se pueda conseguir en el mercado)
 	\end{enumerate}
 \item Requerimientos funcionales
@@ -253,7 +254,7 @@ Para el desarrollo del presente proyecto se supone que:
 	\item El dispositivo debe permitir que se configuren los umbrales mínimos y máximos para los parámetros medidos. 
 	\item Los valores a configurar deben ser adquiridos solo por WiFi, no se admite configuración local por teclado.
 	\item El dispositivo debe generar una confirmación de aceptación o rechazo del transformador en ensayo basado en los umbrales mínimos y máximos preseteados.
-	\item El dispositivo, luego de cada ensayo, independiente del resultado, debe imprimir etiquetas con la siguiente información:
+	\item El dispositivo, luego de cada ensayo, independientemente del resultado, debe imprimir una etiqueta con la siguiente información:
 		\begin{enumerate}
 		\item Número de partida del transformador ensayado
 		\item Condición de aceptado o rechazado
@@ -285,7 +286,7 @@ Para el desarrollo del presente proyecto se supone que:
 \item Requerimientos de comunicación (interfaz WiFi)
 	\begin{enumerate}
 	\item Solicitar parámetros de configuración: el dispositivo debe generar un comando GET de http a un servidor web (provisto por el cliente) para obtener los umbrales de aceptación y el número de partida del transformador a ensayar.
-	\item El dispositivo de ser capaz de procesar la respuesta del comando GET que estará en formato JSON.
+	\item El dispositivo debe ser capaz de procesar la respuesta del comando GET que estará en formato JSON.
 	\item Enviar resultados del ensayo: el dispositivo debe generar un comando POST de http a un servidor (provisto por el cliente) con la información del transformador ensayado en formato JSON.
 	\end{enumerate}
 \item Requerimientos de interfaz de usuario
@@ -301,12 +302,12 @@ Para el desarrollo del presente proyecto se supone que:
 		\item El dispositivo debe mostrar los umbrales presetedos y los valores de las mediciones actuales.
 		\item Los valores de los umbrales configurados en el dispositivo deberán permanecer en el display  durante el ensayo.
 		\item El dispositivo debe mostrar los valores medidos del transformador ensayado luego de cada medición.
-		\item Luego de finalizado el ensayo se debe mostrar un mensaje que indica que la información del ensayo se ha enviado al servidor web y mantenerse el dispositivo bloqueado hasta que se haya recibido la respuesta del servidor.
+		\item Luego de finalizado el ensayo se debe mostrar un mensaje que indique que la información del ensayo se ha enviado al servidor web y mantenerse el dispositivo bloqueado hasta que se haya recibido la respuesta del servidor.
 		\end{enumerate}
-	\item Sobre el buzzer
+	\item Sobre el \textit{buzzer}
 		\begin{enumerate}
 		\item El dispositivo debe emitir un solo sonido de 0,5 segundos de duración para confirmar la aceptación del transformador.
-		\item El dispositivo debe emitir un sonido de repetición de 5 ciclos de 0,5 segundos de duración con pausas de 0,5 segundos para confirmar el rechazo del transformador.
+		\item El dispositivo debe emitir un sonido de repetición de 5 ciclos de 0,5 segundos de duración, con pausas de 0,5 segundos para confirmar el rechazo del transformador.
 		\end{enumerate}		
 	\end{enumerate}
 \end{enumerate}
@@ -344,7 +345,7 @@ Para el desarrollo del presente proyecto se supone que:
 	\end{enumerate}
 \item Desarrollo de hardware (170 hs)
 	\begin{enumerate}
-	\item Calculo, simulación y selección de los componentes de hardware (45 hs).
+	\item Cálculo, simulación y selección de los componentes de hardware (45 hs).
 	\item Diseño del diagrama esquemático (25 hs).
 	\item Gestión de compra de componentes con el cliente (15 hs).
 	\item Armado de prototipo de hardware preliminar en protoboard (20 hs).
@@ -360,7 +361,7 @@ Para el desarrollo del presente proyecto se supone que:
 	\item Diseño de rutinas funcionales (40 hs).
 	\item Diseño de rutinas de comunicación WiFi (40 hs).
 	\item Desarrollo de la interfaz de usuario (40 hs).
-	\item Investigación y desarrollo de librerías para el manejo de la impresora (30 hs).
+	\item Investigación y desarrollo de bibliotecas para el manejo de la impresora (30 hs).
 	\item Integración de las tareas en el RTOS (40 hs).
 	\end{enumerate}
 \item Verificación y validación del dispositivo (60 hs)
