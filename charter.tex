@@ -85,7 +85,7 @@ Buenos Aires, \fechaInicioName
 
 \vspace{2cm}
 
-Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en el prototipo preliminar de un dispositivo capaz de medir y registrar parámetros de transformadores de corriente alterna empleados en la fabricación de dispositivos electromédicos, y tendrá un presupuesto preliminar estimado de 600 hs de trabajo y \textcolor{red}{\$XXX}, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
+Por medio de la presente se acuerda con el Ing. \authorname\hspace{1px} que su Trabajo Final de la \degreename\hspace{1px} se titulará ``\ttitle'', consistirá esencialmente en el prototipo preliminar de un dispositivo capaz de medir y registrar parámetros de transformadores de corriente alterna empleados en la fabricación de dispositivos electromédicos, y tendrá un presupuesto preliminar estimado de 600 hs de trabajo y \$155237, con fecha de inicio \fechaInicioName\hspace{1px} y fecha de presentación pública \fechaFinalName.
 
 Se adjunta a esta acta la planificación inicial.
 
@@ -120,7 +120,7 @@ En la Figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistem
 \begin{itemize}
 \item Módulo ESP32 con WiFi integrado.
 \item Bloques de acondicionamiento de señal y actuación para el bobinado primario y secundario.
-\item Interfaz de usuario: pulsadores, display y \textit{buzzer}.
+\item Interfaz de usuario: pulsadores, \textit{display} y \textit{buzzer}.
 \item Interfaz para impresora RS232.
 \item \textit{Switch} de seguridad para indicar que la tapa de seguridad ha sido removida.
 \item Fuente de alimentación.
@@ -133,7 +133,7 @@ A continuación se presenta un resumen de las tareas propuestas para el disposit
 \item Mediciones de tensión y corriente a los transformadores bajo ensayo.
 \item Configuración de umbrales de aceptación para los parámetros medidos.
 \item Emitir confirmación de aceptación o rechazo del transformador.
-\item Visualización en display LCD de umbrales seteados y mediciones.
+\item Visualización en \textit{display} LCD de umbrales seteados y mediciones.
 \item Envío de las mediciones a servidor web, vía red WiFi.
 \item Impresión de etiquetas con número de partida y valores medidos. 
 \end{itemize}
@@ -226,7 +226,7 @@ Para el desarrollo del presente proyecto se supone que:
 	\item El dispositivo debe ser diseñado en base al módulo ESP32.
 	\item El dispositivo debe ser capaz de medir tensiones y corrientes alternas de manera aislada del transformador bajo ensayo.
 	\item El dispositivo debe ser capaz de conmutar las tensiones primarias y secundarias.
-	\item El dispositivo debe tener un display LCD alfanumérico 20x4 caracteres.
+	\item El dispositivo debe tener un \textit{display} LCD alfanumérico 20x4 caracteres.
 	\item El dispositivo debe tener una interfaz Wifi.
 	\item El dispositivo debe tener una interfaz RS232 capaz de manejar impresoras.
 	\item El dispositivo debe alimentarse desde la red eléctrica Argentina 220Vac/50hz, debiendo proveerse todas las alimentaciones a los diferentes módulos de hardware.
@@ -297,10 +297,10 @@ Para el desarrollo del presente proyecto se supone que:
 		\item Testear: al pulsar este pulsador el dispositivo debe iniciar la secuencia de testeo.
 		\item Cancelar: al pulsar este pulsador la secuencia de testeo en curso debe quedar abortada.
 		\end{enumerate}
-	\item Sobre la funcionalidad del display LCD
+	\item Sobre la funcionalidad del \textit{display} LCD
 		\begin{enumerate}
 		\item El dispositivo debe mostrar los umbrales presetedos y los valores de las mediciones actuales.
-		\item Los valores de los umbrales configurados en el dispositivo deberán permanecer en el display  durante el ensayo.
+		\item Los valores de los umbrales configurados en el dispositivo deberán permanecer en el \textit{display} durante el ensayo.
 		\item El dispositivo debe mostrar los valores medidos del transformador ensayado luego de cada medición.
 		\item Luego de finalizado el ensayo se debe mostrar un mensaje que indique que la información del ensayo se ha enviado al servidor web y mantenerse el dispositivo bloqueado hasta que se haya recibido la respuesta del servidor.
 		\end{enumerate}
@@ -472,7 +472,7 @@ Placa de desarrollo ESP32 & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{\$ 1620
 Sensor De Voltaje Alterna ZMPT101B 250V & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{\$ 728} & \multicolumn{1}{c|}{\$ 1456} \\ \hline
 Sensor De Corriente Alterna ZMCT103C & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{\$ 1068} & \multicolumn{1}{c|}{\$ 2136} \\ \hline
 Modulo Relé de 8 Canales & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{\$ 1112} & \multicolumn{1}{c|}{\$ 1112} \\ \hline
-Display LCD \textit{Backlight} Azul 20x4 & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{\$ 1140} & \multicolumn{1}{c|}{\$ 1140} \\ \hline
+\textit{Display} LCD \textit{Backlight} Azul 20x4 & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{\$ 1140} & \multicolumn{1}{c|}{\$ 1140} \\ \hline
 Fuente \textit{Switching} AC-DC 5 V 700 mA & \multicolumn{1}{c|}{2} & \multicolumn{1}{c|}{\$ 370} & \multicolumn{1}{c|}{\$ 740} \\ \hline
 Modulo Conector MAX3232 & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{\$ 320} & \multicolumn{1}{c|}{\$ 320} \\ \hline
 Componentes varios & \multicolumn{1}{c|}{1} & \multicolumn{1}{c|}{\$ 1648} & \multicolumn{1}{c|}{\$ 1648} \\ \hline
@@ -553,31 +553,40 @@ Referencias:
 \section{12. Gestión de riesgos}
 \label{sec:riesgos}
 
-\begin{consigna}{red}
-a) Identificación de los riesgos (al menos cinco) y estimación de sus consecuencias:
- 
-Riesgo 1: detallar el riesgo (riesgo es algo que si ocurre altera los planes previstos)
-\begin{itemize}
-\item Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).\\
-Justificar el motivo por el cual se asigna determinado número de severidad (S).
-\item Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).\\
-Justificar el motivo por el cual se asigna determinado número de (O). 
-\end{itemize}   
+a) Identificación de los riesgos y estimación de sus consecuencias:
 
-Riesgo 2:
+Riesgo 1: Posibilidad de no contar con pines de entrada/salidas suficientes.
 \begin{itemize}
-\item Severidad (S): 
-\item Ocurrencia (O):
+\item Severidad (S): 8. En caso de suceder podría no cumplirse con todos los requerimientos solicitados por el cliente.
+\item Probabilidad de ocurrencia (O): 8. Muchas interfaces a conectar al ESP32 y este cuenta con 23 GPIOs. Habiendo hecho un conteo inicial de los pines y teniendo en cuenta que ademas de lo pedido se debe disponer de 4 pines mas para JTAG, este evento es muy probable de ocurrir.
+\end{itemize}  
+
+Riesgo 2: Daño o destrucción del hardware adquirido por el cliente.
+\begin{itemize}
+\item Severidad (S): 4. Los elementos de hardware utilizados están disponibles en el mercado local no presentando dificultades para su obtención.
+\item Probabilidad de ocurrencia (O): 5. Todo el conexionado en protoboard y armado de placa universal está a mi cargo e intentaré tomar las medidas necesarias para evitar fallos.
 \end{itemize}
 
-Riesgo 3:
+Riesgo 3: Dificultad para conseguir el protocolo de comunicación de la impresora.
 \begin{itemize}
-\item Severidad (S): 
-\item Ocurrencia (O):
+\item Severidad (S): 7. En caso de ocurrencia implicaría perder la posibilidad de imprimir y es algo que el cliente desea mucho.
+\item Probabilidad de ocurrencia (O): 5. No todos las fabricantes proveen código abierto para comunicarse con sus dispositivos.
+\end{itemize}
+
+Riesgo 4: No alcanzar la exactitud mínima de medición para las tensiones y/o corrientes de alterna.
+\begin{itemize}
+\item Severidad (S): 6. En caso de ocurrencia implicaría perder la posibilidad de discriminar algún tipo de transformador. 
+\item Probabilidad de ocurrencia (O): 2. Se acotaron los errores a margenes que pueden ser alcanzados con facilidad usando módulos estándar del mercado.
+\end{itemize}
+
+Riesgo 5: La comunicación WiFi afecta las mediciones analógicas.
+\begin{itemize}
+\item Severidad (S): 8. En caso de ocurrencia implicaría perder un poco de resolución en las mediciones analógicas. 
+\item Ocurrencia (O): 7. El cliente comentó este efecto en una charla informal que mantuvimos.
 \end{itemize}
 
 
-b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
+b) Tabla de gestión de riesgos:
 
 \begin{table}[htpb]
 \centering
@@ -585,64 +594,432 @@ b) Tabla de gestión de riesgos:      (El RPN se calcula como RPN=SxO)
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Riesgo & S & O & RPN & S* & O* & RPN* \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
-       &   &   &     &    &    &      \\ \hline
+  1    & 8 & 8 &  \begin{consigna}{red}64\end{consigna} & 8  & 1  &  8   \\ \hline
+  2    & 4 & 5 &  20 &    &    &      \\ \hline
+  3    & 7 & 5 &  \begin{consigna}{red}35\end{consigna} & 7  & 1  &  7   \\ \hline
+  4    & 6 & 2 &  12 &    &    &      \\ \hline
+  5    & 8 & 7 &  \begin{consigna}{red}56\end{consigna} & 8  & 1  &  8   \\ \hline
 \end{tabularx}%
 \end{table}
 
 Criterio adoptado: 
-Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a ....
+Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a 25.
 
 Nota: los valores marcados con (*) en la tabla corresponden luego de haber aplicado la mitigación.
 
 c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido:
  
-Riesgo 1: Plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
-  Nueva asignación de S y O, con su respectiva justificación:
-  - Severidad (S): mientras más severo, más alto es el número (usar números del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de severidad (S).
-  - Probabilidad de ocurrencia (O): mientras más probable, más alto es el número (usar del 1 al 10).
-          Justificar el motivo por el cual se asigna determinado número de (O).
+Riesgo 1: Posibilidad de no contar con pines de entrada/salidas suficientes.
 
-Riesgo 2: Plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación).
- 
-Riesgo 3: Plan de mitigación (si por el RPN fuera necesario elaborar un plan de mitigación)
+Plan de mitigación: Se puede adquirir una interfaz serie I2C para conectar el \textit{display} al microcontrolador y de esta forma liberar los pines de este periférico, que por otro lado, es el que mas pines ocupa.
+\begin{itemize}
+\item Severidad (S): 8. La severidad sigue siendo la misma.
+\item Probabilidad de ocurrencia (O): 1. La probabilidad de ocurrencia baja al mínimo ya que se mitigó completamente el riesgo.
+\end{itemize}
 
-\end{consigna}
+Riesgo 3: Dificultad para conseguir el protocolo de comunicación de la impresora.
 
+Plan de mitigación: Se hablo con el cliente la posibilidad de utilizar otras impresoras cuyos \textit{drivers} estén disponibles para ser implementados en un microcontrolador.
+\begin{itemize}
+\item Severidad (S): 7. la severidad sigue siendo la misma.
+\item Probabilidad de ocurrencia (O): 1. La probabilidad de ocurrencia baja al mínimo ya que se mitigó completamente el riesgo.
+\end{itemize}
+
+Riesgo 5: La comunicación WiFi afecta las mediciones analógicas.
+
+Plan de mitigación: Instalar ADC externos.
+\begin{itemize}
+\item Severidad (S): 8. la severidad sigue siendo la misma.
+\item Probabilidad de ocurrencia (O): 1. La probabilidad de ocurrencia baja al mínimo ya que se mitigó completamente el riesgo.
+\end{itemize}
 
 \section{13. Gestión de la calidad}
 \label{sec:calidad}
 
-\begin{consigna}{red}
-Para cada uno de los requerimientos del proyecto indique:
+
 \begin{itemize} 
-\item Req \#1: Copiar acá el requerimiento.
+\item Req \#1.1: El dispositivo debe ser diseñado en base al módulo ESP32.
 
 Verificación y validación:
 
 \begin{itemize}
-\item Verificación para confirmar si se cumplió con lo requerido antes de mostrar el sistema al cliente:\\
-Detallar 
-\item Validación con el cliente para confirmar que está de acuerdo en que se cumplió con lo requerido:\\
-Detallar  
+\item Verificación: La planificación y el diseño debe estar basado en las características del módulo.
+\item Validación: El prototipo final debe funcionar con el módulo ESP32, siendo este la unidad de procesamiento y transmisión.
 \end{itemize}
 
 \end{itemize}
 
-Tener en cuenta que en este contexto se pueden mencionar simulaciones, cálculos, revisión de hojas de datos, consulta con expertos, etc.
+\begin{itemize} 
+\item Req \#1.2: El dispositivo debe ser capaz de medir tensiones y corrientes alternas de manera aislada del transformador bajo ensayo.
 
-\end{consigna}
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará que los módulos elegidos para las mediciones posean interfaces aisladas.
+\item Validación: se realizaran ensayos con transformadores y elementos patrones para constatar las mediciones.  
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#1.3: El dispositivo debe ser capaz de conmutar las tensiones primarias y secundarias.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará que existan elementos de maniobra apropiados en el circuito.
+\item Validación: se realizaran ensayos con transformadores y debe constatarse mediciones de corrientes en ambos bobinados al conmutar las tensiones.  
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#1.4: El dispositivo debe tener un \textit{display} LCD alfanumérico 20x4 caracteres.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará que exista dicho elemento en el circuito esquemático correctamente conectado al módulo ESP32.
+\item Validación: al encender el equipo se deberán leer los valores correspondientes en dicho \textit{display}.  
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#1.5: El dispositivo debe tener una interfaz Wifi.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará que el módulo ESP32 posea dicha interfaz por medio de su hoja de datos. 
+\item Validación: se verificará que el sistema envía/recibe los parámetros a través de una red WiFi al pulsar Configurar. 
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#1.6: El dispositivo debe tener una interfaz RS232 capaz de manejar impresoras.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará que exista dicha interfaz en el circuito esquemático correctamente conectado al módulo ESP32.
+\item Validación: se conectará la interfaz a una impresora y se mandará a imprimir.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#1.7: El dispositivo debe alimentarse desde la red eléctrica Argentina 220 Vac/50 hz, debiendo proveerse todas las alimentaciones a los diferentes módulos de hardware.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará que exista una fuente de 220 Vac que entregue las tensiones requeridas para el circuito.
+\item Validación: se conectará el equipo a la red eléctrica y este debe funcionar. 
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#1.8: El dispositivo debe poseer un \textit{switch} para indicar que la tapa de seguridad ha sido removida.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará que exista dicho elemento en el circuito esquemático correctamente conectado al módulo ESP32.
+\item Validación: se lanzará un proceso de caracterización en un transformador, luego se quitará la tapa de seguridad y se verificará que el equipo vaya a una condición segura.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#1.9: El dispositivo debe poseer 3 pulsadores nombrados Configurar, Testear y Cancelar.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará que existan dichos elementos en el circuito esquemático correctamente conectado al módulo ESP32.
+\item Validación: en las diferentes pruebas llevadas a cabo con el cliente estos pulsadores serán utilizados.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#1.10: El dispositivo debe poseer un \textit{buzzer}.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará que exista dicho elemento en el circuito esquemático correctamente conectado al módulo ESP32.
+\item Validación: se lanzará un proceso de caracterización en un transformador, y se verificará que al final de la prueba el \textit{buzzer} emita un zumbido.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#2.1: Requerimientos relativos a los valores a medir: Bobinado primario
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará mediante simulación analógica que los módulos seleccionados para dicha función cumplan con los rangos requeridos.
+\item Validación: se colocaran los valores de tensiones correspondientes y estas y las corrientes generadas se deberán leer en el \textit{display} dentro de los rangos requeridos.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#2.2: Requerimientos relativos a los valores a medir: Bobinado secundario
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará mediante simulación analógica que los módulos seleccionados para dicha función cumplan con los rangos requeridos.
+\item Validación: se colocaran los valores de tensiones correspondientes y estas y las corrientes generadas se deberán leer en el \textit{display} dentro de los rangos requeridos.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#2.3: Precisión en la medición de tensión: mejor al 1,5\% 
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará mediante simulación analógica que los módulos seleccionados para dicha función cumplan con los rangos requeridos.
+\item Validación: se colocarán los valores de tensiones correspondientes, estos se deberán leer en el \textit{display} y constatarse con algún elemento patrón acorde.  
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#2.4: Precisión en la medición de corriente: mejor al 4\% 
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se verificará mediante simulación analógica que los módulos seleccionados para dicha función cumplan con los rangos requeridos.
+\item Validación: se colocarán tensiones acordes en los bobinados para generar los valores de corrientes correspondientes, estos se deberán leer en el \textit{display} y constatarse con algún elemento patrón acorde.  
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#3.1: El dispositivo debe permitir que se configuren los umbrales mínimos y máximos para los parámetros medidos. 
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará que los umbrales mínimos y máximos sean variables y no constantes en el código C.
+\item Validación: se configurarán los umbrales mínimos y máximos a través del procedimiento correspondiente.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#3.2: Los valores a configurar deben ser adquiridos solo por WiFi, no se admite configuración local por teclado.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará que las rutinas de recepción WiFi incluyan la lectura de los umbrales mínimos y máximos.
+\item Validación: se comprobará que el procedimiento de configuración de los umbrales mínimos y máximos, en el manual de usuario, es solo por WiFi. 
+\end{itemize}
+
+\end{itemize}
+
+
+\begin{itemize} 
+\item Req \#3.3: El dispositivo debe generar una confirmación de aceptación o rechazo del transformador en ensayo basado en los umbrales mínimos y máximos preseteados.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará que las mediciones de las tensiones y corrientes de los transformadores se comparen con los umbrales seteados.
+\item Validación: se lanzará un proceso de caracterización en un transformador con umbrales tales que generen la aceptación y el rechazo de este y se validarán los resultados.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#3.4: El dispositivo, luego de cada ensayo, independientemente del resultado, debe imprimir una etiqueta con la siguiente información:
+                \begin{enumerate}
+                \item Número de partida del transformador ensayado
+                \item Condición de aceptado o rechazado
+                \item Valores medidos de tensiones y corrientes
+                \end{enumerate}
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que al finalizar el ensayo, dicha información sea enviada a la UART donde será conectada la impresora. 
+\item Validación: se lanzará un proceso de caracterización en un transformador y se verificarán las etiquetas impresas.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#3.5: El dispositivo debe seguir de forma automática la secuencia de testeo básico detallada en este requerimiento (se omite aquí por ser demasiados pasos).
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobarán que exista la maquina estado para seguir dicho procedimiento.
+\item Validación: se lanzará un proceso de caracterización en un transformador y se verificará dicha secuencia.  
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#4.1: Solicitar parámetros de configuración: el dispositivo debe generar un comando GET de http a un servidor web (provisto por el cliente) para obtener los umbrales de aceptación y el número de partida del transformador a ensayar.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobarán la existencia  del comando GET de http en las APIs del módulo ESP32.
+\item Validación: se pulsará Configurar y se verificará que los datos fueron correctamente obtenidos del servidor a través del \textit{display}.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#4.2: El dispositivo debe ser capaz de procesar la respuesta del comando GET que estará en formato JSON.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará la existencia de rutinas para procesar cadenas de tipo JSON.
+\item Validación: se pulsará Configurar y se verificará que los datos fueron correctamente obtenidos del servidor a través del \textit{display}.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#4.3: Enviar resultados del ensayo: el dispositivo debe generar un comando POST de http a un servidor (provisto por el cliente) con la información del transformador ensayado en formato JSON.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobara la existencia del comando POST de http en las APIs del módulo ESP32. 
+\item Validación: se lanzará un proceso de caracterización en un transformador y se comprobará que el servidor web recibe la información del transformador ensayado mostrada en el \textit{display}.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#5.1.1: Sobre la funcionalidad de los pulsadores - Configurar: al pulsar este pulsador el dispositivo debe generar el comando GET para solicitar al servidor web los parámetros de configuración del dispositivo a través de WiFi.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará que la rutina de pulsado de Configurar llame el comando GET de http con la información requerida. 
+\item Validación: se pulsará Configurar y se verificarán que los datos fueron correctamente obtenidos del servidor web corroborando su valor en el \textit{display}.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#5.1.2: Sobre la funcionalidad de los pulsadores - Testear: al pulsar este pulsador el dispositivo debe iniciar la secuencia de testeo.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que esta inicia cuando la tecla es pulsada.
+\item Validación: se pulsará Testear y se verificará que comienza la secuencia de testeo básico descriptiva en el REQ 3.5 sección 4.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#5.1.3: Sobre la funcionalidad de los pulsadores - Cancelar: al pulsar este pulsador la secuencia de testeo en curso debe quedar abortada.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que esta aborta la secuencia cuando la tecla es pulsada.
+\item Validación: se iniciará una rutina de testeo y se verificará que al pulsar Cancelar la secuencia de testeo es detenida. 
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#5.2.1: El dispositivo debe mostrar los umbrales presetedos y los valores de las mediciones actuales.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará que existan rutinas para mostrar dichos umbrales y mediciones en el \textit{display}.
+\item Validación: se pulsará Configurar y se verificará en el \textit{display} los umbrales y mediciones.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#5.2.2: Los valores de los umbrales configurados en el dispositivo deberán permanecer en el \textit{display} durante el ensayo.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que los umbrales configurados son enviados al \textit{display} y que estos no son borrados del \textit{display} durante el ensayo.
+\item Validación: se iniciará una rutina de testeo y se verificará que los umbrales configurados permanecen en el \textit{display} durante todo el ensayo.  
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#5.2.3: El dispositivo debe mostrar los valores medidos del transformador ensayado luego de cada medición.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que al finalizar cada medición los valores medidos son enviados al \textit{display}.
+\item Validación: se iniciará una rutina de testeo y se verificará que los valores medidos del transformador ensayado son mostrados en el \textit{display} luego de cada medición.   
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#5.2.4: Luego de finalizado el ensayo se debe mostrar un mensaje que indique que la información del ensayo se ha enviado al servidor web y mantenerse el dispositivo bloqueado hasta que se haya recibido la respuesta del servidor.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que la condición para finalizar el ensayo sea la recepción de la respuesta del web server.
+\item Validación: se iniciará una rutina de testeo con el servidor no disponible y se verificará que el dispositivo permanece bloqueado.
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#5.3.1: El dispositivo debe emitir un solo sonido de 0,5 segundos de duración para confirmar la aceptación del transformador.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará, en las rutinas de manejo del \textit{buzzer}, que cuando se levanta el \textit{flag} de "transformador aceptado", se genera un único pulso.
+\item Validación: se iniciará una rutina de testeo con un transformados apto para ser aceptado y se verificará el sonido requerido.  
+\end{itemize}
+
+\end{itemize}
+
+\begin{itemize} 
+\item Req \#5.3.2: El dispositivo debe emitir un sonido de repetición de 5 ciclos de 0,5 segundos de duración, con pausas de 0,5 segundos para confirmar el rechazo del transformador.
+
+Verificación y validación:
+
+\begin{itemize}
+\item Verificación: se comprobará, en las rutinas de manejo del \textit{buzzer}, que cuando se levanta el \textit{flag} de "transformador rechazado", se genera un tren de pulsos con las características adecuadas. 
+\item Validación: se iniciará una rutina de testeo con un transformados apto para ser rechazado y se verificará el sonido requerido.   
+\end{itemize}
+
+\end{itemize}
+
 
 \section{14. Comunicación del proyecto}
 \label{sec:comunicaciones}
 
-\begin{consigna}{red}
 El plan de comunicación del proyecto es el siguiente:
-\end{consigna}
 
 % Please add the following required packages to your document preamble:
 % \usepackage{graphicx}
@@ -657,11 +1034,11 @@ El plan de comunicación del proyecto es el siguiente:
 \multicolumn{6}{|c|}{\cellcolor[HTML]{C0C0C0}PLAN DE COMUNICACIÓN DEL PROYECTO}           \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 ¿Qué comunicar? & Audiencia & Propósito & Frecuencia & Método de comunicac. & Responsable \\ \hline
-                &           &           &            &                      &             \\ \hline
-                &           &           &            &                      &             \\ \hline
-                &           &           &            &                      &             \\ \hline
-                &           &           &            &                      &             \\ \hline
-                &           &           &            &                      &             \\ \hline
+Definición de los objetivos y los Alcances & Director & Evaluar & Inicio del Proyecto & Correo electrónico & Cristian Trinidad \\ \hline
+Inicio de las tareas de implementación & Director & Informar & Inicio de la implementación & Correo electrónico & Cristian Trinidad \\ \hline
+Grado de avance & Director & Evaluar e Informar & A la mitad del proyecto & Correo electrónico & Cristian Trinidad \\ \hline
+Desvio de los alcances y/o el cronograma & Director & Informar & Cuando surjan & Correo electrónico & Cristian Trinidad \\ \hline
+Finalización y Cierre & Director & Evaluar & Final del Proyecto & Presentación & Cristian Trinidad \\ \hline
 \end{tabular}%
 }
 \end{table}
@@ -669,55 +1046,63 @@ El plan de comunicación del proyecto es el siguiente:
 \section{15. Gestión de Compras}
 \label{sec:compras}
 
-\begin{consigna}{red}
-En caso de tener que comprar elementos o contratar servicios:
-a) Explique con qué criterios elegiría a un proveedor.
-b) Redacte el Statement of Work correspondiente.
-\end{consigna}
+Los componentes que son necesarios comprar se pueden conseguir de forma local y no ameritan la redacción de un plan de compras. Por otro lado, esta tarea será llevada a cabo por el departamento de compras del cliente. Solo se seguirá un proceso informal con el cliente para estar seguro que todos los componentes requeridos llegan a destino.
+
+En cuanto a la fabricación del prototipo, sera realizado por mi mismo, no necesitando gestión con proveedores de este servicio.
+
+\newpage
 
 \section{16. Seguimiento y control}
 \label{sec:seguimiento}
 
-\begin{consigna}{red}
-Para cada tarea del proyecto establecer la frecuencia y los indicadores con los se seguirá su avance y quién será el responsable de hacer dicho seguimiento y a quién debe comunicarse la situación (en concordancia con el Plan de Comunicación del proyecto).
-
-El indicador de avance tiene que ser algo medible, mejor incluso si se puede medir en \% de avance. Por ejemplo,se pueden indicar en esta columna cosas como ``cantidad de conexiones ruteadeas'' o ``cantidad de funciones implementadas'', pero no algo genérico y ambiguo como ``\%'', porque el lector no sabe porcentaje de qué cosa.
-
-\end{consigna}
-
 \begin{table}[!htpb]
 \centering
-\begin{tabularx}{\linewidth}{@{}|X|X|X|X|X|X|@{}}
+\begin{tabularx}{\linewidth}{@{}|c|X|X|X|X|X|@{}}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 \multicolumn{6}{|c|}{\cellcolor[HTML]{C0C0C0}SEGUIMIENTO DE AVANCE}                                                                       \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Tarea del WBS & Indicador de avance & Frecuencia de reporte & Resp. de seguimiento & Persona a ser informada & Método de comunic. \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
- &  &  &  &  &  \\ \hline
-\end{tabularx}%
-%}
+1.1 & Documento de Requerimiento Aprobado & Al finalizar el documento & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+1.2 & Aceptación de todos los requerimientos & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+1.3 & Porcentaje de planificación realizado & Semanal & Cristian \newline Trinidad & Profesores Gestión de Proyecto & Correo electrónico \\ \hline
+2.1 a 2.2 & Cant. de módulos en Esquemático & Al finalizar la tarea & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+2.3 & Módulos comprados & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+2.4 a 2.7 & Diferentes módulos ensamblados & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+3.1 & Programar el ESP32 & Al finalizar la tarea & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+3.2 & Doc. de Arquitectura Aprobado & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+3.3 - 3.7 & Diferentes rutinas funcionando & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+3.8 & Diferentes rutinas intercambiando datos & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+4.1 a 4.2 & Cant. de rutinas testeadas & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+4.3 & Trafos validados & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+5.1 a 5.3 & Cantidad de elementos del índice completos & Al finalizar el documento & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+5.4 & Trabajo Final presentado & Al finalizar la tarea & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+\end{tabularx}%%}
 \end{table}
+
 
 \section{17. Procesos de cierre}    
 \label{sec:cierre}
 
-\begin{consigna}{red}
-Establecer las pautas de trabajo para realizar una reunión final de evaluación del proyecto, tal que contemple las siguientes actividades:
-
 \begin{itemize}
-\item Pautas de trabajo que se seguirán para analizar si se respetó el Plan de Proyecto original:
- - Indicar quién se ocupará de hacer esto y cuál será el procedimiento a aplicar. 
-\item Identificación de las técnicas y procedimientos útiles e inútiles que se utilizaron, y los problemas que surgieron y cómo se solucionaron:
- - Indicar quién se ocupará de hacer esto y cuál será el procedimiento para dejar registro.
-\item Indicar quién organizará el acto de agradecimiento a todos los interesados, y en especial al equipo de trabajo y colaboradores:
-  - Indicar esto y quién financiará los gastos correspondientes.
+\item Pautas de trabajo a seguir para analizar si se respetó el Plan de Proyecto original:
+\begin{itemize}
+\item Cumplimiento de los requerimientos, se validará con las pruebas de verificación y validación.
+\item Correcto desglose de tareas y estimación de tiempos, se evaluará con el Diagrama de Gantt.
+\item Estimación del presupuesto, al final se evaluará el dinero y horas hombre destinadas al proyecto.
+\item Correcta Gestión de Riesgos, en caso surgir algún riesgo identificado, se evaluará si se mitigo según lo propuesto y la efectividad.
 \end{itemize}
+Responsable: Cristian Trinidad
 
-\end{consigna}
+\item Identificación de las técnicas y procedimientos útiles e inútiles que se utilizaron, y los problemas que surgieron y cómo se solucionaron. Este análisis será documentado y anexado al informe final del proyecto.
+
+Responsable: Cristian Trinidad
+
+\item Agradecimiento a las personas involucradas en el proyecto. Se invitará a la presentación pública del trabajo final al director y todos los colaboradores del proyecto.
+
+Responsable: Cristian Trinidad
+
+\end{itemize}
 
 
 \end{document}
