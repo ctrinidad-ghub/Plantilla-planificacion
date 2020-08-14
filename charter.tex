@@ -1,4 +1,5 @@
 \documentclass[11pt]{charter}
+\usepackage{pdflscape}
 
 % El títulos de la memoria, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \ttitle
 \titulo{Medición y aceptación de parámetros en transformadores de corriente alterna} 
@@ -260,7 +261,7 @@ Para el desarrollo del presente proyecto se supone que:
 		\item Condición de aceptado o rechazado
 		\item Valores medidos de tensiones y corrientes
 		\end{enumerate}
-	\item El dispositivo debe seguir de forma automática la siguiente secuencia de testeo basico:
+	\item El dispositivo debe seguir de forma automática la siguiente secuencia de testeo básico:
 		\begin{itemize}
 		\item Pulsar Testear
 		\item Verificar si el dispositivo fue configurado, sino pedir parámetros de configuración
@@ -315,10 +316,47 @@ Para el desarrollo del presente proyecto se supone que:
 
 
 \section{Historias de usuarios (\textit{Product backlog})}
-
-En esta sección se deben incluir las historias de usuarios y su ponderación (history points). Recordar que las historias de usuarios son descripciones cortas y simples de una característica contada desde la perspectiva de la persona que desea la nueva capacidad, generalmente un usuario o cliente del sistema. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo.
-
 \label{sec:backlog}
+
+En esta sección se incluyen las historias de usuarios, su ponderación (\textit{history points}) y su prioridad. La ponderación es un número entero que representa el tamaño de la historia comparada con otras historias de similar tipo, a mayor ponderación, mayor el tamaño de la historia. La prioridad por otro lado, se adopta del 1 al 10, siendo 1 muy prioritario y 10 poco prioritario.
+
+Historia 1: como operador del sistema quiero oír un sonido al final del ensayo que indique si el transformador es apto o no para su uso con el objetivo de tener una idea rápida del resultado del testeo.
+\begin{itemize}
+\item Ponderación: 3. Ponderación baja ya que no es un gran esfuerzo agregar esta funcionalidad.
+\item Prioridad: 7. Prioridad media/baja porque se cuenta con un \textit{display} para ver el resultado del ensayo.
+\end{itemize}
+
+Historia 2: como responsable de calidad quiero asegurarme que el proceso de carga de los umbrales mínimos y máximos para los parámetros medidos sea por un medio que disminuya errores humanos al máximo con el objetivo de evitar umbrales mal cargados y la potencial aceptación de transformadores no aptos.
+\begin{itemize}
+\item Ponderación: 8. Ponderación alta, ya que agregar esta funcionalidad representa un gran esfuerzo ya que se debe incorporar una comunicación WiFi con un servidor web externo para leer los umbrales.
+\item Prioridad: 2. Prioridad alta porque de la fiabilidad de los umbrales configurados depende todo el proceso de testeo.
+\end{itemize}
+
+Historia 3: como responsable de calidad quiero contar con una etiqueta impresa luego de cada testeo con el objetivo de mejorar el seguimiento de los transformadores ensayados y su condición.
+\begin{itemize}
+\item Ponderación: 8. Ponderación alta ya que agregar esta funcionalidad representa un esfuerzo considerable al agregar el puerto de la impresora con su correspondiente implementación del \textit{driver} en el software.
+\item Prioridad: 4. Prioridad moderada, porque ayuda al sistema de calidad y es un objetivo del sistema, pero de no estar, se podría generar una etiqueta escrita a mano.
+\end{itemize}
+
+Historia 4: como operador del sistema quiero tener la posibilidad de forzar la detención del testeo en curso con el objetivo de evitar perdida de tiempo si advertí que los umbrales fueron mal cargado o peor aún, si el transformador fue incorrectamente conectado.
+\begin{itemize}
+\item Ponderación: 4. Ponderación media/baja ya que agregar esta funcionalidad en la máquina de estados que controla la secuencia de testeo no representa un gran esfuerzo.
+\item Prioridad: 1. Alta prioridad por tratarse de una historia que está relacionada con la seguridad del sistema y el operario al considerar que el transformador puede estar mal conectado.
+\end{itemize}
+
+Historia 5: como responsable de seguridad e higiene quiero tener algún mecanismo de seguridad que sense el estado de la tapa de seguridad y en caso de ser removida llevar el dispositivo a un estado seguro con el objetivo de evitar que el operador quede expuesto a altas tensiones.
+\begin{itemize}
+\item Ponderación: 3. Ponderación media/baja ya que agregar esta funcionalidad en la máquina de estados que controla la secuencia de testeo no representa un gran esfuerzo.
+\item Prioridad: 1. Alta prioridad por tratarse de una historia que está relacionada con la seguridad del sistema y el operario.
+\end{itemize}
+
+Historia 6: como operador del sistema quiero tener disponible los umbrales configurados y las mediciones en el \textit{display} durante el ensayo con el objetivo de asegurarme que los umbrales son correctos.
+\begin{itemize}
+\item Ponderación: 7. Ponderación media/alta ya que agregar esta funcionalidad representa un esfuerzo importante de software al tener que enviar toda la información requerida al \textit{display}.
+\item Prioridad: 8. Prioridad media/baja ya que el sistema automáticamente chequea los umbrales contra las mediciones.
+\end{itemize}
+
+
 
 \section{5. Entregables principales del proyecto}
 \label{sec:entregables}
@@ -418,12 +456,17 @@ Cantidad total de horas: (610 hs)
 \label{fig:Gantt_1}
 \end{figure}
 
+
+\begin{landscape}
+
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.6\textwidth]{./Figuras/Gantt_2.png}
+\includegraphics[width=1.57\textwidth]{./Figuras/Gantt_2.png}
 \caption{Diagrama de \textit{Gantt} Cont.}
 \label{fig:Gantt_2}
 \end{figure}
+
+\end{landscape}
 
 \newpage
 
@@ -555,34 +598,34 @@ Referencias:
 
 a) Identificación de los riesgos y estimación de sus consecuencias:
 
-Riesgo 1: Posibilidad de no contar con pines de entrada/salidas suficientes.
+Riesgo 1: posibilidad de no contar con pines de entrada/salidas suficientes.
 \begin{itemize}
 \item Severidad (S): 8. En caso de suceder podría no cumplirse con todos los requerimientos solicitados por el cliente.
-\item Probabilidad de ocurrencia (O): 8. Muchas interfaces a conectar al ESP32 y este cuenta con 23 GPIOs. Habiendo hecho un conteo inicial de los pines y teniendo en cuenta que ademas de lo pedido se debe disponer de 4 pines mas para JTAG, este evento es muy probable de ocurrir.
+\item Probabilidad de ocurrencia (O): 8. Muchas interfaces a conectar al ESP32 y este cuenta con 23 GPIOs. Habiendo hecho un conteo inicial de los pines y teniendo en cuenta que además de lo pedido se debe disponer de 4 pines más para JTAG, este evento tiene mucha probabilidad de ocurrir.
 \end{itemize}  
 
-Riesgo 2: Daño o destrucción del hardware adquirido por el cliente.
+Riesgo 2: daño o destrucción del hardware adquirido por el cliente.
 \begin{itemize}
-\item Severidad (S): 4. Los elementos de hardware utilizados están disponibles en el mercado local no presentando dificultades para su obtención.
-\item Probabilidad de ocurrencia (O): 5. Todo el conexionado en protoboard y armado de placa universal está a mi cargo e intentaré tomar las medidas necesarias para evitar fallos.
+\item Severidad (S): 4. Los elementos de hardware utilizados están disponibles en el mercado local por lo que no se presentan dificultades para su obtención.
+\item Probabilidad de ocurrencia (O): 5. Todo el conexionado en protoboard y armado de placa universal están a cargo del responsable del proyecto y se intentarán tomar las medidas necesarias para evitar fallos.
 \end{itemize}
 
-Riesgo 3: Dificultad para conseguir el protocolo de comunicación de la impresora.
+Riesgo 3: dificultad para conseguir el protocolo de comunicación de la impresora.
 \begin{itemize}
 \item Severidad (S): 7. En caso de ocurrencia implicaría perder la posibilidad de imprimir y es algo que el cliente desea mucho.
 \item Probabilidad de ocurrencia (O): 5. No todos las fabricantes proveen código abierto para comunicarse con sus dispositivos.
 \end{itemize}
 
-Riesgo 4: No alcanzar la exactitud mínima de medición para las tensiones y/o corrientes de alterna.
+Riesgo 4: no alcanzar la exactitud mínima de medición para las tensiones y/o corrientes de alterna.
 \begin{itemize}
 \item Severidad (S): 6. En caso de ocurrencia implicaría perder la posibilidad de discriminar algún tipo de transformador. 
-\item Probabilidad de ocurrencia (O): 2. Se acotaron los errores a margenes que pueden ser alcanzados con facilidad usando módulos estándar del mercado.
+\item Probabilidad de ocurrencia (O): 2. Se acotaron los errores a márgenes que pueden ser alcanzados con facilidad usando módulos estándar del mercado.
 \end{itemize}
 
-Riesgo 5: La comunicación WiFi afecta las mediciones analógicas.
+Riesgo 5: la comunicación WiFi afecta las mediciones analógicas.
 \begin{itemize}
 \item Severidad (S): 8. En caso de ocurrencia implicaría perder un poco de resolución en las mediciones analógicas. 
-\item Ocurrencia (O): 7. El cliente comentó este efecto en una charla informal que mantuvimos.
+\item Ocurrencia (O): 7. El cliente comentó este efecto en una charla informal que se mantuvo con él.
 \end{itemize}
 
 
@@ -594,42 +637,41 @@ b) Tabla de gestión de riesgos:
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Riesgo & S & O & RPN & S* & O* & RPN* \\ \hline
-  1    & 8 & 8 &  \begin{consigna}{red}64\end{consigna} & 8  & 1  &  8   \\ \hline
-  2    & 4 & 5 &  20 &    &    &      \\ \hline
-  3    & 7 & 5 &  \begin{consigna}{red}35\end{consigna} & 7  & 1  &  7   \\ \hline
-  4    & 6 & 2 &  12 &    &    &      \\ \hline
-  5    & 8 & 7 &  \begin{consigna}{red}56\end{consigna} & 8  & 1  &  8   \\ \hline
+No contar con pines de entrada/salidas suficientes    & 8 & 8 &  \begin{consigna}{red}64\end{consigna} & 8  & 1  &  8   \\ \hline
+Daño o destrucción del hardware adquirido por el cliente    & 4 & 5 &  20 &    &    &      \\ \hline
+Dificultad para conseguir el protocolo de comunicación de la impresora    & 7 & 5 &  \begin{consigna}{red}35\end{consigna} & 7  & 1  &  7   \\ \hline
+No alcanzar la exactitud mínima de medición para las tensiones y/o corrientes de alterna    & 6 & 2 &  12 &    &    &      \\ \hline
+La comunicación WiFi afecta las mediciones analógicas    & 8 & 7 &  \begin{consigna}{red}56\end{consigna} & 8  & 1  &  8   \\ \hline
 \end{tabularx}%
 \end{table}
 
-Criterio adoptado: 
-Se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a 25.
+Criterio adoptado: se tomarán medidas de mitigación en los riesgos cuyos números de RPN sean mayores a 25.
 
 Nota: los valores marcados con (*) en la tabla corresponden luego de haber aplicado la mitigación.
 
 c) Plan de mitigación de los riesgos que originalmente excedían el RPN máximo establecido:
  
-Riesgo 1: Posibilidad de no contar con pines de entrada/salidas suficientes.
+Riesgo 1: posibilidad de no contar con pines de entrada/salidas suficientes.
 
-Plan de mitigación: Se puede adquirir una interfaz serie I2C para conectar el \textit{display} al microcontrolador y de esta forma liberar los pines de este periférico, que por otro lado, es el que mas pines ocupa.
+Plan de mitigación: se puede adquirir una interfaz serie I2C para conectar el \textit{display} al microcontrolador y de esta forma liberar los pines de este periférico, que por otro lado, es el que más pines ocupa.
 \begin{itemize}
 \item Severidad (S): 8. La severidad sigue siendo la misma.
 \item Probabilidad de ocurrencia (O): 1. La probabilidad de ocurrencia baja al mínimo ya que se mitigó completamente el riesgo.
 \end{itemize}
 
-Riesgo 3: Dificultad para conseguir el protocolo de comunicación de la impresora.
+Riesgo 3: dificultad para conseguir el protocolo de comunicación de la impresora.
 
-Plan de mitigación: Se hablo con el cliente la posibilidad de utilizar otras impresoras cuyos \textit{drivers} estén disponibles para ser implementados en un microcontrolador.
+Plan de mitigación: se habló con el cliente la posibilidad de utilizar otras impresoras cuyos \textit{drivers} estén disponibles para ser implementados en un microcontrolador.
 \begin{itemize}
-\item Severidad (S): 7. la severidad sigue siendo la misma.
+\item Severidad (S): 7. La severidad sigue siendo la misma.
 \item Probabilidad de ocurrencia (O): 1. La probabilidad de ocurrencia baja al mínimo ya que se mitigó completamente el riesgo.
 \end{itemize}
 
-Riesgo 5: La comunicación WiFi afecta las mediciones analógicas.
+Riesgo 5: la comunicación WiFi afecta las mediciones analógicas.
 
-Plan de mitigación: Instalar ADC externos.
+Plan de mitigación: instalar ADC externos.
 \begin{itemize}
-\item Severidad (S): 8. la severidad sigue siendo la misma.
+\item Severidad (S): 8. La severidad sigue siendo la misma.
 \item Probabilidad de ocurrencia (O): 1. La probabilidad de ocurrencia baja al mínimo ya que se mitigó completamente el riesgo.
 \end{itemize}
 
@@ -638,19 +680,19 @@ Plan de mitigación: Instalar ADC externos.
 
 
 \begin{itemize} 
-\item Req \#1.1: El dispositivo debe ser diseñado en base al módulo ESP32.
+\item Req \#1.1: el dispositivo debe ser diseñado en base al módulo ESP32.
 
 Verificación y validación:
 
 \begin{itemize}
-\item Verificación: La planificación y el diseño debe estar basado en las características del módulo.
-\item Validación: El prototipo final debe funcionar con el módulo ESP32, siendo este la unidad de procesamiento y transmisión.
+\item Verificación: la planificación y el diseño debe estar basado en las características del módulo.
+\item Validación: el prototipo final debe funcionar con el módulo ESP32, siendo este la unidad de procesamiento y transmisión.
 \end{itemize}
 
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#1.2: El dispositivo debe ser capaz de medir tensiones y corrientes alternas de manera aislada del transformador bajo ensayo.
+\item Req \#1.2: el dispositivo debe ser capaz de medir tensiones y corrientes alternas de manera aislada del transformador bajo ensayo.
 
 Verificación y validación:
 
@@ -662,7 +704,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#1.3: El dispositivo debe ser capaz de conmutar las tensiones primarias y secundarias.
+\item Req \#1.3: el dispositivo debe ser capaz de conmutar las tensiones primarias y secundarias.
 
 Verificación y validación:
 
@@ -674,7 +716,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#1.4: El dispositivo debe tener un \textit{display} LCD alfanumérico 20x4 caracteres.
+\item Req \#1.4: el dispositivo debe tener un \textit{display} LCD alfanumérico 20x4 caracteres.
 
 Verificación y validación:
 
@@ -686,7 +728,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#1.5: El dispositivo debe tener una interfaz Wifi.
+\item Req \#1.5: el dispositivo debe tener una interfaz Wifi.
 
 Verificación y validación:
 
@@ -698,7 +740,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#1.6: El dispositivo debe tener una interfaz RS232 capaz de manejar impresoras.
+\item Req \#1.6: el dispositivo debe tener una interfaz RS232 capaz de manejar impresoras.
 
 Verificación y validación:
 
@@ -710,7 +752,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#1.7: El dispositivo debe alimentarse desde la red eléctrica Argentina 220 Vac/50 hz, debiendo proveerse todas las alimentaciones a los diferentes módulos de hardware.
+\item Req \#1.7: el dispositivo debe alimentarse desde la red eléctrica Argentina 220 Vac/50 hz, debiendo proveerse todas las alimentaciones a los diferentes módulos de hardware.
 
 Verificación y validación:
 
@@ -722,7 +764,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#1.8: El dispositivo debe poseer un \textit{switch} para indicar que la tapa de seguridad ha sido removida.
+\item Req \#1.8: el dispositivo debe poseer un \textit{switch} para indicar que la tapa de seguridad ha sido removida.
 
 Verificación y validación:
 
@@ -734,7 +776,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#1.9: El dispositivo debe poseer 3 pulsadores nombrados Configurar, Testear y Cancelar.
+\item Req \#1.9: el dispositivo debe poseer 3 pulsadores nombrados Configurar, Testear y Cancelar.
 
 Verificación y validación:
 
@@ -746,7 +788,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#1.10: El dispositivo debe poseer un \textit{buzzer}.
+\item Req \#1.10: el dispositivo debe poseer un \textit{buzzer}.
 
 Verificación y validación:
 
@@ -758,31 +800,31 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#2.1: Requerimientos relativos a los valores a medir: Bobinado primario
+\item Req \#2.1: requerimientos relativos a los valores a medir: bobinado primario
 
 Verificación y validación:
 
 \begin{itemize}
 \item Verificación: se verificará mediante simulación analógica que los módulos seleccionados para dicha función cumplan con los rangos requeridos.
-\item Validación: se colocaran los valores de tensiones correspondientes y estas y las corrientes generadas se deberán leer en el \textit{display} dentro de los rangos requeridos.
+\item Validación: se colocarán los valores de tensiones correspondientes y estas y las corrientes generadas se deberán leer en el \textit{display} dentro de los rangos requeridos.
 \end{itemize}
 
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#2.2: Requerimientos relativos a los valores a medir: Bobinado secundario
+\item Req \#2.2: requerimientos relativos a los valores a medir: bobinado secundario
 
 Verificación y validación:
 
 \begin{itemize}
 \item Verificación: se verificará mediante simulación analógica que los módulos seleccionados para dicha función cumplan con los rangos requeridos.
-\item Validación: se colocaran los valores de tensiones correspondientes y estas y las corrientes generadas se deberán leer en el \textit{display} dentro de los rangos requeridos.
+\item Validación: se colocarán los valores de tensiones correspondientes y estas y las corrientes generadas se deberán leer en el \textit{display} dentro de los rangos requeridos.
 \end{itemize}
 
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#2.3: Precisión en la medición de tensión: mejor al 1,5\% 
+\item Req \#2.3: precisión en la medición de tensión: mejor al 1,5\% 
 
 Verificación y validación:
 
@@ -794,7 +836,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#2.4: Precisión en la medición de corriente: mejor al 4\% 
+\item Req \#2.4: precisión en la medición de corriente: mejor al 4\% 
 
 Verificación y validación:
 
@@ -806,7 +848,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#3.1: El dispositivo debe permitir que se configuren los umbrales mínimos y máximos para los parámetros medidos. 
+\item Req \#3.1: el dispositivo debe permitir que se configuren los umbrales mínimos y máximos para los parámetros medidos. 
 
 Verificación y validación:
 
@@ -818,7 +860,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#3.2: Los valores a configurar deben ser adquiridos solo por WiFi, no se admite configuración local por teclado.
+\item Req \#3.2: los valores a configurar deben ser adquiridos solo por WiFi, no se admite configuración local por teclado.
 
 Verificación y validación:
 
@@ -831,7 +873,7 @@ Verificación y validación:
 
 
 \begin{itemize} 
-\item Req \#3.3: El dispositivo debe generar una confirmación de aceptación o rechazo del transformador en ensayo basado en los umbrales mínimos y máximos preseteados.
+\item Req \#3.3: el dispositivo debe generar una confirmación de aceptación o rechazo del transformador en ensayo basado en los umbrales mínimos y máximos preseteados.
 
 Verificación y validación:
 
@@ -843,7 +885,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#3.4: El dispositivo, luego de cada ensayo, independientemente del resultado, debe imprimir una etiqueta con la siguiente información:
+\item Req \#3.4: el dispositivo, luego de cada ensayo, independientemente del resultado, debe imprimir una etiqueta con la siguiente información:
                 \begin{enumerate}
                 \item Número de partida del transformador ensayado
                 \item Condición de aceptado o rechazado
@@ -853,26 +895,26 @@ Verificación y validación:
 Verificación y validación:
 
 \begin{itemize}
-\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que al finalizar el ensayo, dicha información sea enviada a la UART donde será conectada la impresora. 
+\item Verificación: se comprobará, en la máquina de estado de la secuencia de testeo, que al finalizar el ensayo, dicha información sea enviada a la UART donde será conectada la impresora. 
 \item Validación: se lanzará un proceso de caracterización en un transformador y se verificarán las etiquetas impresas.
 \end{itemize}
 
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#3.5: El dispositivo debe seguir de forma automática la secuencia de testeo básico detallada en este requerimiento (se omite aquí por ser demasiados pasos).
+\item Req \#3.5: el dispositivo debe seguir de forma automática la secuencia de testeo básico detallada en este requerimiento (se omite aquí por ser demasiados pasos).
 
 Verificación y validación:
 
 \begin{itemize}
-\item Verificación: se comprobarán que exista la maquina estado para seguir dicho procedimiento.
+\item Verificación: se comprobarán que exista la máquina estado para seguir dicho procedimiento.
 \item Validación: se lanzará un proceso de caracterización en un transformador y se verificará dicha secuencia.  
 \end{itemize}
 
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#4.1: Solicitar parámetros de configuración: el dispositivo debe generar un comando GET de http a un servidor web (provisto por el cliente) para obtener los umbrales de aceptación y el número de partida del transformador a ensayar.
+\item Req \#4.1: solicitar parámetros de configuración: el dispositivo debe generar un comando GET de http a un servidor web (provisto por el cliente) para obtener los umbrales de aceptación y el número de partida del transformador a ensayar.
 
 Verificación y validación:
 
@@ -884,7 +926,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#4.2: El dispositivo debe ser capaz de procesar la respuesta del comando GET que estará en formato JSON.
+\item Req \#4.2: el dispositivo debe ser capaz de procesar la respuesta del comando GET que estará en formato JSON.
 
 Verificación y validación:
 
@@ -896,7 +938,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#4.3: Enviar resultados del ensayo: el dispositivo debe generar un comando POST de http a un servidor (provisto por el cliente) con la información del transformador ensayado en formato JSON.
+\item Req \#4.3: enviar resultados del ensayo: el dispositivo debe generar un comando POST de http a un servidor (provisto por el cliente) con la información del transformador ensayado en formato JSON.
 
 Verificación y validación:
 
@@ -908,7 +950,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#5.1.1: Sobre la funcionalidad de los pulsadores - Configurar: al pulsar este pulsador el dispositivo debe generar el comando GET para solicitar al servidor web los parámetros de configuración del dispositivo a través de WiFi.
+\item Req \#5.1.1: sobre la funcionalidad de los pulsadores - Configurar: al pulsar este pulsador el dispositivo debe generar el comando GET para solicitar al servidor web los parámetros de configuración del dispositivo a través de WiFi.
 
 Verificación y validación:
 
@@ -920,31 +962,31 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#5.1.2: Sobre la funcionalidad de los pulsadores - Testear: al pulsar este pulsador el dispositivo debe iniciar la secuencia de testeo.
+\item Req \#5.1.2: sobre la funcionalidad de los pulsadores - Testear: al pulsar este pulsador el dispositivo debe iniciar la secuencia de testeo.
 
 Verificación y validación:
 
 \begin{itemize}
-\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que esta inicia cuando la tecla es pulsada.
+\item Verificación: se comprobará, en la máquina de estado de la secuencia de testeo, que esta inicia cuando la tecla es pulsada.
 \item Validación: se pulsará Testear y se verificará que comienza la secuencia de testeo básico descriptiva en el REQ 3.5 sección 4.
 \end{itemize}
 
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#5.1.3: Sobre la funcionalidad de los pulsadores - Cancelar: al pulsar este pulsador la secuencia de testeo en curso debe quedar abortada.
+\item Req \#5.1.3: sobre la funcionalidad de los pulsadores - Cancelar: al pulsar este pulsador la secuencia de testeo en curso debe quedar abortada.
 
 Verificación y validación:
 
 \begin{itemize}
-\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que esta aborta la secuencia cuando la tecla es pulsada.
+\item Verificación: se comprobará, en la máquina de estado de la secuencia de testeo, que esta aborta la secuencia cuando la tecla es pulsada.
 \item Validación: se iniciará una rutina de testeo y se verificará que al pulsar Cancelar la secuencia de testeo es detenida. 
 \end{itemize}
 
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#5.2.1: El dispositivo debe mostrar los umbrales presetedos y los valores de las mediciones actuales.
+\item Req \#5.2.1: el dispositivo debe mostrar los umbrales configurados y los valores de las mediciones actuales.
 
 Verificación y validación:
 
@@ -956,43 +998,43 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#5.2.2: Los valores de los umbrales configurados en el dispositivo deberán permanecer en el \textit{display} durante el ensayo.
+\item Req \#5.2.2: los valores de los umbrales configurados en el dispositivo deberán permanecer en el \textit{display} durante el ensayo.
 
 Verificación y validación:
 
 \begin{itemize}
-\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que los umbrales configurados son enviados al \textit{display} y que estos no son borrados del \textit{display} durante el ensayo.
+\item Verificación: se comprobará, en la máquina de estado de la secuencia de testeo, que los umbrales configurados son enviados al \textit{display} y que estos no son borrados del \textit{display} durante el ensayo.
 \item Validación: se iniciará una rutina de testeo y se verificará que los umbrales configurados permanecen en el \textit{display} durante todo el ensayo.  
 \end{itemize}
 
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#5.2.3: El dispositivo debe mostrar los valores medidos del transformador ensayado luego de cada medición.
+\item Req \#5.2.3: el dispositivo debe mostrar los valores medidos del transformador ensayado luego de cada medición.
 
 Verificación y validación:
 
 \begin{itemize}
-\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que al finalizar cada medición los valores medidos son enviados al \textit{display}.
+\item Verificación: se comprobará, en la máquina de estado de la secuencia de testeo, que al finalizar cada medición los valores medidos son enviados al \textit{display}.
 \item Validación: se iniciará una rutina de testeo y se verificará que los valores medidos del transformador ensayado son mostrados en el \textit{display} luego de cada medición.   
 \end{itemize}
 
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#5.2.4: Luego de finalizado el ensayo se debe mostrar un mensaje que indique que la información del ensayo se ha enviado al servidor web y mantenerse el dispositivo bloqueado hasta que se haya recibido la respuesta del servidor.
+\item Req \#5.2.4: luego de finalizado el ensayo se debe mostrar un mensaje que indique que la información del ensayo se ha enviado al servidor web y mantenerse el dispositivo bloqueado hasta que se haya recibido la respuesta del servidor.
 
 Verificación y validación:
 
 \begin{itemize}
-\item Verificación: se comprobará, en la maquina de estado de la secuencia de testeo, que la condición para finalizar el ensayo sea la recepción de la respuesta del web server.
+\item Verificación: se comprobará, en la máquina de estado de la secuencia de testeo, que la condición para finalizar el ensayo sea la recepción de la respuesta del web server.
 \item Validación: se iniciará una rutina de testeo con el servidor no disponible y se verificará que el dispositivo permanece bloqueado.
 \end{itemize}
 
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#5.3.1: El dispositivo debe emitir un solo sonido de 0,5 segundos de duración para confirmar la aceptación del transformador.
+\item Req \#5.3.1: el dispositivo debe emitir un solo sonido de 0,5 segundos de duración para confirmar la aceptación del transformador.
 
 Verificación y validación:
 
@@ -1004,7 +1046,7 @@ Verificación y validación:
 \end{itemize}
 
 \begin{itemize} 
-\item Req \#5.3.2: El dispositivo debe emitir un sonido de repetición de 5 ciclos de 0,5 segundos de duración, con pausas de 0,5 segundos para confirmar el rechazo del transformador.
+\item Req \#5.3.2: el dispositivo debe emitir un sonido de repetición de 5 ciclos de 0,5 segundos de duración, con pausas de 0,5 segundos para confirmar el rechazo del transformador.
 
 Verificación y validación:
 
@@ -1027,19 +1069,19 @@ El plan de comunicación del proyecto es el siguiente:
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 \begin{table}[htpb]
 \centering
-\resizebox{\textwidth}{!}{%
+\resizebox{\textwidth}{!}{
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
-\multicolumn{6}{|c|}{\cellcolor[HTML]{C0C0C0}PLAN DE COMUNICACIÓN DEL PROYECTO}           \\ \hline
+\multicolumn{6}{|c|}{\cellcolor[HTML]{C0C0C0}PLAN DE COMUNICACIÓN DEL PROYECTO}                                                                                                                                                                                              \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 ¿Qué comunicar? & Audiencia & Propósito & Frecuencia & Método de comunicac. & Responsable \\ \hline
-Definición de los objetivos y los Alcances & Director & Evaluar & Inicio del Proyecto & Correo electrónico & Cristian Trinidad \\ \hline
-Inicio de las tareas de implementación & Director & Informar & Inicio de la implementación & Correo electrónico & Cristian Trinidad \\ \hline
-Grado de avance & Director & Evaluar e Informar & A la mitad del proyecto & Correo electrónico & Cristian Trinidad \\ \hline
-Desvio de los alcances y/o el cronograma & Director & Informar & Cuando surjan & Correo electrónico & Cristian Trinidad \\ \hline
-Finalización y Cierre & Director & Evaluar & Final del Proyecto & Presentación & Cristian Trinidad \\ \hline
-\end{tabular}%
+\begin{tabular}[c]{@{}c@{}}Definición de los \\objetivos y los alcances\end{tabular} & Director  & Evaluar   & Inicio del Proyecto                                                    & Correo electrónico   & \begin{tabular}[c]{@{}c@{}}Cristian\\ Trinidad\end{tabular}  \\ \hline
+\begin{tabular}[c]{@{}c@{}}Inicio de las tareas de \\ implementación\end{tabular}     & Director  & Informar  & \begin{tabular}[c]{@{}c@{}}Inicio de la \\ implementación\end{tabular} & Correo electrónico   & \begin{tabular}[c]{@{}c@{}}Cristian \\ Trinidad\end{tabular} \\ \hline
+Grado de avance & Director  & Informar  & \begin{tabular}[c]{@{}c@{}}A la mitad del \\ proyecto\end{tabular}     & Correo electrónico   & \begin{tabular}[c]{@{}c@{}}Cristian \\ Trinidad\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Desvió de los alcances\\ y/o el cronograma\end{tabular}    & Director  & Informar  & Cuando surjan                                                          & Correo electrónico   & \begin{tabular}[c]{@{}c@{}}Cristian \\ Trinidad\end{tabular} \\ \hline
+Finalización y Cierre                                                                 & Director  & Evaluar   & Final del Proyecto                                                     & Presentación         & \begin{tabular}[c]{@{}c@{}}Cristian \\ Trinidad\end{tabular} \\ \hline
+\end{tabular}
 }
 \end{table}
 
@@ -1048,7 +1090,7 @@ Finalización y Cierre & Director & Evaluar & Final del Proyecto & Presentación
 
 Los componentes que son necesarios comprar se pueden conseguir de forma local y no ameritan la redacción de un plan de compras. Por otro lado, esta tarea será llevada a cabo por el departamento de compras del cliente. Solo se seguirá un proceso informal con el cliente para estar seguro que todos los componentes requeridos llegan a destino.
 
-En cuanto a la fabricación del prototipo, sera realizado por mi mismo, no necesitando gestión con proveedores de este servicio.
+En cuanto a la fabricación del prototipo, será realizado por el responsable del proyecto, por lo que no se necesitará gestión con proveedores de este servicio.
 
 \newpage
 
@@ -1063,14 +1105,14 @@ En cuanto a la fabricación del prototipo, sera realizado por mi mismo, no neces
 \multicolumn{6}{|c|}{\cellcolor[HTML]{C0C0C0}SEGUIMIENTO DE AVANCE}                                                                       \\ \hline
 \rowcolor[HTML]{C0C0C0} 
 Tarea del WBS & Indicador de avance & Frecuencia de reporte & Resp. de seguimiento & Persona a ser informada & Método de comunic. \\ \hline
-1.1 & Documento de Requerimiento Aprobado & Al finalizar el documento & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+1.1 & Documento de Requerimiento aprobado & Al finalizar el documento & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
 1.2 & Aceptación de todos los requerimientos & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
 1.3 & Porcentaje de planificación realizado & Semanal & Cristian \newline Trinidad & Profesores Gestión de Proyecto & Correo electrónico \\ \hline
-2.1 a 2.2 & Cant. de módulos en Esquemático & Al finalizar la tarea & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+2.1 a 2.2 & Cant. de módulos en esquemático & Al finalizar la tarea & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
 2.3 & Módulos comprados & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
 2.4 a 2.7 & Diferentes módulos ensamblados & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
 3.1 & Programar el ESP32 & Al finalizar la tarea & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
-3.2 & Doc. de Arquitectura Aprobado & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
+3.2 & Doc. de Arquitectura aprobado & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
 3.3 - 3.7 & Diferentes rutinas funcionando & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
 3.8 & Diferentes rutinas intercambiando datos & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
 4.1 a 4.2 & Cant. de rutinas testeadas & Semanal & Cristian \newline Trinidad & Director & Correo electrónico \\ \hline
@@ -1087,10 +1129,10 @@ Tarea del WBS & Indicador de avance & Frecuencia de reporte & Resp. de seguimien
 \begin{itemize}
 \item Pautas de trabajo a seguir para analizar si se respetó el Plan de Proyecto original:
 \begin{itemize}
-\item Cumplimiento de los requerimientos, se validará con las pruebas de verificación y validación.
-\item Correcto desglose de tareas y estimación de tiempos, se evaluará con el Diagrama de Gantt.
-\item Estimación del presupuesto, al final se evaluará el dinero y horas hombre destinadas al proyecto.
-\item Correcta Gestión de Riesgos, en caso surgir algún riesgo identificado, se evaluará si se mitigo según lo propuesto y la efectividad.
+\item El cumplimiento de los requerimientos se validará con las pruebas de verificación y validación.
+\item El correcto desglose de tareas y estimación de tiempos se evaluará con el diagrama de Gantt.
+\item La estimación del presupuesto se evaluará comparando el dinero y horas hombre reales destinadas al proyecto y lo estimado oportunamente.
+\item La correcta gestión de riesgos, en caso surgir algún riesgo identificado, se evaluará en función de si se mitigó según lo propuesto y la efectividad.
 \end{itemize}
 Responsable: Cristian Trinidad
 
@@ -1103,6 +1145,7 @@ Responsable: Cristian Trinidad
 Responsable: Cristian Trinidad
 
 \end{itemize}
+
 
 
 \end{document}
